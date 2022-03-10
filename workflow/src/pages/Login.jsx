@@ -25,7 +25,7 @@ const Login = () => {
   }
   return (
     <Fondo>
-      <div className='container w-96 flex-col p-5 border-2 border-c-border bg-stone-400 text-white text-center mx-auto'>
+      <div className='container w-96 h-max flex flex-col p-5 border-c-border text-white text-center mx-auto mt-4 bg-gray-400 hover:bg-purple-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 hover:bg-opacity-50 border border-gray-100 shadow-md'>
         <h1 className='text-4xl my-3'>Iniciar sesión</h1>
         <Link to="/" className='text-1xl'>o cree una cuenta</Link>
         <form onSubmit={iniciarSesion}>
@@ -50,7 +50,7 @@ const Login = () => {
         </form>
         {user.error&&<p>{user.message}</p>}
         {user.loading&&<p>Loading...</p>}
-        <a href="https://backendtzuzulcode.wl.r.appspot.com/auth/google" className='bg-indigo-600 py-4 px-3 flex'><span><FcGoogle/></span>Iniciar sesión con Google</a>
+        <a href="https://backendtzuzulcode.wl.r.appspot.com/auth/google" className='bg-indigo-600 py-4 px-3 flex mt-6 justify-center items-center gap-3'><span><FcGoogle/></span>Iniciar sesión con Google</a>
       </div> 
     </Fondo>
   )
