@@ -5,6 +5,7 @@ import MainHeader from './Main_header'
 //modal 
 import NewBoardModal from '../Modal/NewBoardModal'
 import useModal from '../../Hooks/useModal'
+import ProfilePic from '../ProfilePic/ProfilePic'
 
 const Main = () => {
   const [isOpenModalNew, openModalNew, closeModalNew] = useModal();
@@ -17,11 +18,20 @@ const Main = () => {
        {/* <MainContent/>*/}
        <div className='p-6'>
          <div className='flex justify-evenly'>
+           <ProfilePic urlImg={'https://i.pinimg.com/736x/c0/f0/30/c0f0302707c98b3bb6698aa4e2b42aef.jpg'}/>
           <h2 className='text-2xl text-center mb-2'>Equipos de trabajo</h2>
-          <button onClick={() => openModalNew()}>Nuevo Equipo</button>
+          <button onClick={() => openModalNew()} className='bg-gradient-to-r from-purple-700 to-blue-500 hover:from-purple-600 hover:to-blue-400 rounded-lg px-2 text-white font-bold'>Nuevo Equipo</button>
          </div>
-         
-         <MiniBoard name={'tablero 1'} url={'#'}/>
+         <div className='flex-1 overflow-auto bg-gray-50'>
+          <MiniBoard name={'tablero 1'} url={'#'}/>
+          <MiniBoard name={'tablero 2'} url={'#'}/>
+          <MiniBoard name={'tablero 3'} url={'#'}/>
+          <MiniBoard name={'tablero 4'} url={'#'}/>
+          <MiniBoard name={'tablero 5'} url={'#'}/>
+          <MiniBoard name={'tablero 6'} url={'#'}/>
+         </div>
+
+
         </div>
     </div>
   )
