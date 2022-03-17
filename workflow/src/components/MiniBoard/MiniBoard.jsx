@@ -1,10 +1,19 @@
 import React from 'react'
 
-const MiniBoard = ({name, id}) => {
+const MiniBoard = ({name, description, cover}) => {
   return (
-    <button className='bg-slate-400 w-1/3 h-64 rounded-md'>
-        <h3>{name}</h3>
+    <button className=" bg-color-bg rounded-md">
+      <div className='p-5'>
+        <h2 className='text-color-text-h font-bold text-2xl'>{name}</h2>
+        <p className='text-color-text-h text-left'>{description}</p>
+      </div>
+      <div className=''>
+        <img className='h-48 w-full object-cover object-center transition-all hover:object-bottom duration-1000 rounded-b-md' src={cover} alt={name} />
+      </div>
+
+      
     </button>
+
   )
 }
 

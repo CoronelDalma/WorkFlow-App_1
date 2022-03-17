@@ -6,11 +6,10 @@
     :root {
         --color-bg: #fffffe;
         --color-text-h: #2b2c34;
-        --color-p: #2b2c34;
         --color-btn: #6246ea;
-        --color-text-btn: #fffffe;
-        --color-bg-card: #d1d1e9;
+        --color-bg-secondary: #d1d1e9;
         --color-border: #2b2c34;
+        --color-tertiary: #e45858;
 
         --color-gradient: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
     }

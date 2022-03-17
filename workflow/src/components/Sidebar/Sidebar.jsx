@@ -1,65 +1,65 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import Logo from '../SVG-reutilizable/Logo'
 import LinksSidebar from './LinksSidebar';
 
+//fake api
+import { getTeams} from "../../api/teams";
 
 const Sidebar = () => {
-  const mockupTableros = 
-    [
-      {
-        "id": 1,
-        "title": "tablero 1"
-      },
-      {
-        "id": 2,
-        "title": "tablero 2"
-      },
-      {
-        "id": 3,
-        "title": "tablero 3"
-      }
-    ]  
+  const [myTeams, setMyTeams] = useState([]);
+
+  useEffect(() => {
+    getTeams().then((data) => setMyTeams(data));
+},[])
+
     
   return (
     <div className='w-64 p-5 mt-2 rounded-l-md'>
-        <Logo widthLogo='80' height='24'/>
+        <Link to='/'>
+          <Logo widthLogo='80' height='24'/>
+        </Link>
         <nav className='mt-8'>
-          <h3 className='text-sm text-purple-900 font-semibold uppercase tracking-wide'>Tableros</h3>
+          <Link to='/my-teams'>
+          <h3 className='text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Equipos de trabajo</h3>
+          </Link>
+          
+          
           <div className="mt-3 -mx-3">
           {
             
-            mockupTableros.map((tablero) =>(
-              <LinksSidebar key={tablero.id} texto={tablero.title} url="#"/>
+            myTeams.map((team) =>(
+              <LinksSidebar key={team.id} texto={team.name} url="/team"/>
             ))
           }
           </div>
 
-          <h3 className='mt-6 text-sm text-purple-900 font-semibold uppercase tracking-wide'>Tareas</h3>
+          <h3 className='mt-6 text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Tareas</h3>
           <div className="mt-3 -mx-3">
           {
             
-            mockupTableros.map((tablero) =>(
-              <LinksSidebar key={tablero.id} texto={tablero.title} url="#"/>
+            myTeams.map((tablero) =>(
+              <LinksSidebar key={tablero.id} texto={tablero.name} url="#"/>
             ))
           }
           </div>
 
-          <h3 className='mt-6 text-sm text-purple-900 font-semibold uppercase tracking-wide'>Tags</h3>
+          <h3 className='mt-6 text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Tags</h3>
           <div className="mt-3 -mx-3">
           {
             
-            mockupTableros.map((tablero) =>(
-              <LinksSidebar key={tablero.id} texto={tablero.title} url="#"/>
+            myTeams.map((tablero) =>(
+              <LinksSidebar key={tablero.id} texto={tablero.name} url="#"/>
             ))
           }
           </div>
 
-          <h3 className='mt-6 text-sm text-purple-900 font-semibold uppercase tracking-wide'>Invitaciones</h3>
+          <h3 className='mt-6 text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Invitaciones</h3>
           <div className="mt-3 -mx-3">
           {
             
-            mockupTableros.map((tablero) =>(
-              <LinksSidebar key={tablero.id} texto={tablero.title} url="#"/>
+            myTeams.map((tablero) =>(
+              <LinksSidebar key={tablero.id} texto={tablero.name} url="#"/>
             ))
           }
           </div>

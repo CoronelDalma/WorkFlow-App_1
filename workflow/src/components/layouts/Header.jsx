@@ -15,7 +15,7 @@ const Header = () => {
         dispatch(logout())
       }
   return (
-      <nav className="bg-gradient-to-l from-sky-400 to-blue-500 py-3">
+      <nav className="bg-color-btn py-3">
         <div className='max-w-screen-xl mx-auto flex justify-between relative pr-6'>
           <Link to="/"><Logo/></Link>
           <ul className={`${openMenu?"block":"hidden"} bg-purple-400 md:bg-transparent text-right md:flex absolute right-0 top-7 md:static p-2 pl-10 md:p-0 md space-y-2 md:space-y-0`}>
