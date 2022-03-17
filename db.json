@@ -1,0 +1,81 @@
+{
+  "teams": [
+    {
+      "id": "0",
+      "name": "Work",
+      "description": "Descripcion 1 fgd dfgdfg fbfd",
+      "cover": ""
+    },
+    {
+      "id": "1",
+      "name": "Sportive",
+      "description": "Descripcion 1 fgd dfgdfg fbfd",
+      "cover": "https://images.unsplash.com/photo-1646617747561-9b91464e780a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+    },
+    {
+      "id": "2",
+      "name": "Lunches",
+      "description": "Descripcion 1 fgd dfgdfg fbfd",
+      "cover": ""
+    },
+    {
+      "id": "3",
+      "name": "Voluntary Service",
+      "description": "Descripcion 1 fgd dfgdfg fbfd",
+      "cover": ""
+    },
+    {
+      "id": "4",
+      "name": "NuevoTeam",
+      "description": "Sin Descrpcion",
+      "cover": ""
+    },
+    {
+      "id": "1647371676870",
+      "name": "Otro",
+      "description": "otrooooo",
+      "cover": ""
+    },
+    {
+      "id": "1647375204438",
+      "name": "Equipo aaaa",
+      "description": "aaaaaa",
+      "cover": ""
+    },
+    {
+      "id": "1647459819346",
+      "name": "probando modal",
+      "description": "pruebas",
+      "cover": ""
+    },
+    {
+      "id": "1647459884612",
+      "name": "otra prueba de modal ",
+      "description": "hhdfhdfgdgdgdbdfbdbdgdfg",
+      "cover": ""
+    },
+    {
+      "id": "1647460400312",
+      "name": "holaaaaaaaaa",
+      "description": "7",
+      "cover": ""
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
