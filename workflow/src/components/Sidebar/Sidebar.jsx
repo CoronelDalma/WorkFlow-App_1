@@ -15,7 +15,7 @@ const Sidebar = () => {
 },[])*/
   useEffect(() => {
     get("/teams")
-    .then(res => setMyTeams([...myTeams, res.data]))
+    .then(res => setMyTeams(res.data))
     .catch(error => console.log(error))
   },[])
     
