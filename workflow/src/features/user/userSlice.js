@@ -58,6 +58,17 @@ export const logout = createAsyncThunk("user/logout", async() =>{
     return response.data
 })
 
+export const signup = createAsyncThunk("user/signup", async(credentials,thunkAPI) =>{
+    //AXIOS
+    const response = await post("/auth/signup",{
+        name:credentials.name,
+        birthday:credentials.birthday,
+        city:credentials.city,
+        email:credentials.email,
+        password: credentials.password
+    })
+    return response.data
+})
 const userSlice = createSlice({
     name: 'user',
     initialState:{
@@ -89,7 +100,8 @@ const userSlice = createSlice({
             state.logged = false
             state.loading = false
             state.error = true
-            state.message = action.payload.message
+            state.message = action.error.message
+            console.log(action)
         })
         //validate
         builder.addCase(validate.pending,(state,action) =>{
@@ -106,6 +118,8 @@ const userSlice = createSlice({
         builder.addCase(validate.rejected,(state,action) =>{
             state.logged = false
             state.loading = false
+            state.error = true
+            state.message = action.error.message
 
         })
         //logout
@@ -126,6 +140,27 @@ const userSlice = createSlice({
             state.loading = false
             state.error = true
             state.message = action.payload.message
+        })
+        //signup
+        builder.addCase(signup.pending,(state,action) =>{
+            state.name = ""
+            state.loading = true
+            state.error = false
+            state.message = ""
+        })
+        builder.addCase(signup.fulfilled,(state,action) =>{
+            state.logged = true
+            state.name = action.payload.name
+            state.loading = false
+            state.error = false
+            state.message = ""
+        })
+        builder.addCase(signup.rejected,(state,action) =>{
+            state.logged = false
+            state.loading = false
+            state.error = true
+            state.message = action.payload.message
+            console.log(action.payload)
         })
     }
 
