@@ -4,15 +4,20 @@ import Logo from '../SVG-reutilizable/Logo'
 import LinksSidebar from './LinksSidebar';
 
 //fake api
-import { getTeams} from "../../api/teams";
+//import { getTeams} from "../../api/teams";
+import { get } from '../../api'
 
 const Sidebar = () => {
   const [myTeams, setMyTeams] = useState([]);
 
-  useEffect(() => {
+/*  useEffect(() => {
     getTeams().then((data) => setMyTeams(data));
-},[])
-
+},[])*/
+  useEffect(() => {
+    get("/teams")
+    .then(res => setMyTeams([...myTeams, res.data]))
+    .catch(error => console.log(error))
+  },[])
     
   return (
     <div className='w-64 p-5 mt-2 rounded-l-md'>
@@ -29,7 +34,7 @@ const Sidebar = () => {
           {
             
             myTeams.map((team) =>(
-              <LinksSidebar key={team.id} texto={team.name} url="/team"/>
+              <LinksSidebar key={team._id} texto={team.name} url="/team"/>
             ))
           }
           </div>

@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import MiniBoard from '../MiniBoard/MiniBoard'
 import MainHeader from './Main_header'
+import ProfilePic from '../ProfilePic/ProfilePic'
 
 //modal 
-import ProfilePic from '../ProfilePic/ProfilePic'
-import {FaWindowClose} from 'react-icons/fa'
-
-import { getTeams, addTeam } from "../../api/teams";
 import NewTeamModal from '../Modal/NewTeamModal'
+
+//api
+import { get, post } from '../../api'
+//import { getTeams, addTeam } from "../../api/teams";
+
 
 const Main = () => {
   const [myTeams, setMyTeams] = useState([])
   const [modalOpened,setModalOpened] = useState(false)
    
-  useEffect(() => {
-      getTeams().then((data) => setMyTeams(data));
-  },[])
- 
-
   const add = (event) => {
       event.preventDefault();
-      const {name,cover,description} = event.target
+      const {name,img,description} = event.target
       const newTeam = {
-            name:name.value,
-            cover:cover.value,
-            description:description.value
-        }
-      addTeam(newTeam);
-      setMyTeams([...myTeams,newTeam]);
+        name:name.value,
+        img:img.value,
+        description:description.value
+      }
+      post("/teams",newTeam)
+      .then(res => {
+        setMyTeams([...myTeams,res.data]);
+      })
+      .catch(error => console.log(error))
       setModalOpened(false);
   }
+
+  useEffect(() => {
+    get("/teams")
+    .then(res => setMyTeams([...myTeams, res.data]))
+    .catch(error => console.log(error))
+  },[])
 
   return (
     <div className='flex-1 min-w-0 h-fit mt-2 rounded-r-md bg-color-bg-secondary'>
@@ -46,7 +52,7 @@ const Main = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 mt-10 rounded-md'>
             {
              myTeams.map((team) =>(
-              <MiniBoard key={team.id} name={team.name} url={'#'} description={team.description} cover={team.cover}/>
+              <MiniBoard key={team._id} name={team.name} url={'/my-teams/'+team._id} description={team.description} cover={team.img}/>
              )
              )
             }

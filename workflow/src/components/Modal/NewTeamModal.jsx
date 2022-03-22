@@ -12,7 +12,7 @@ const NewTeamModal = ({setModalOpen, addTeam}) => {
             <h2 className='p-5 text-lavender-800 text-3xl font-bold'>Create a new team</h2>
             <form className='flex flex-col p-5' onSubmit={addTeam}>
                 <input className='p-4 bg-lavender-100 outline-none border focus:border-lavender-600 my-5 rounded-md' name='name' placeholder='Name...' type="text" required/>
-                <input className='p-4 bg-lavender-100 outline-none border focus:border-lavender-600 my-5 rounded-md' name='cover' placeholder='Cover...' type="text" />
+                <input className='p-4 bg-lavender-100 outline-none border focus:border-lavender-600 my-5 rounded-md' name='img' placeholder='Image...' type="text" />
                 <input className='p-4 bg-lavender-100 outline-none border focus:border-lavender-600 my-5 rounded-md' name='description' placeholder='Description...' type="text" required/>
                 <button className='bg-gradient-to-r from-purple-700 to-blue-500 
                                 hover:from-purple-600 hover:to-blue-400 rounded-lg 
