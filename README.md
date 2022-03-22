@@ -35,3 +35,6 @@ index.css:
 
 #### React icons
 npm install react-icons --save
+
+#### Axios
+npm install axios
