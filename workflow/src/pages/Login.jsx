@@ -5,6 +5,7 @@ import Fondo from '../components/layouts/Fondo'
 
 import {useSelector, useDispatch} from 'react-redux'
 import {login,logout} from '../features/user/userSlice'
+import { URL } from "../config"
 
 const Login = () => {
   const user = useSelector((state) => state.user);
@@ -20,7 +21,8 @@ const Login = () => {
 
   const iniciarSesion = (event) => {
     event.preventDefault()
-    const {email:{value:email},password:{value:password}} = event.target
+    const {email:{value:email},password:{value:password}} = event.target;
+    console.log(event.target)
     dispatch(login({email,password}))
   }
   return (
@@ -36,12 +38,12 @@ const Login = () => {
             </div>
             <div className="input_box flex flex-col">
               <label ><span>Contraseña</span></label>
-              <input type="password" name='password' placeholder='contraseña' required/>
+              <input className='text-black' type="password" name='password' placeholder='contraseña' required/>
             </div>
 
           </div>
           <div className="container__buttons flex flex-col items-center gap-4">
-            <button type="button" className='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500'>
+            <button  className='bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500'>
               Iniciar Sesión
             </button>
            
@@ -50,7 +52,7 @@ const Login = () => {
         </form>
         {user.error&&<p>{user.message}</p>}
         {user.loading&&<p>Loading...</p>}
-        <a href="https://backendtzuzulcode.wl.r.appspot.com/auth/google" className='bg-indigo-600 py-4 px-3 flex mt-6 justify-center items-center gap-3'><span><FcGoogle/></span>Iniciar sesión con Google</a>
+        <a href={`${URL}/auth/google`} className='bg-indigo-600 py-4 px-3 flex mt-6 justify-center items-center gap-3'><span><FcGoogle/></span>Iniciar sesión con Google</a>
       </div> 
     </Fondo>
   )

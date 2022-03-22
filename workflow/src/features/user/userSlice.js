@@ -1,7 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+// Axios
+import {post} from "../../api"
 
 export const login = createAsyncThunk("user/login", async(credentials,thunkAPI) =>{
-    const response = await fetch("https://backendtzuzulcode.wl.r.appspot.com/auth/login",{
+    /*const response = await fetch("https://backendtzuzulcode.wl.r.appspot.com/auth/login",{
         method : "POST",
         credentials: 'include',
         headers:{
@@ -11,17 +13,24 @@ export const login = createAsyncThunk("user/login", async(credentials,thunkAPI) 
             email: credentials.email,
             password: credentials.password
         })
-    })
-
+        
     const data = await response.json();
     if(!data.id) {
         return thunkAPI.rejectWithValue(data)
     }
-    return data;
+    return data;*/
+    //AXIOS
+    const response = await post("/auth/login",{
+        email:credentials.email,
+        password: credentials.password
+    })
+    return response.data
 })
 
+ 
+
 export const validate = createAsyncThunk("user/validate", async(params,thunkAPI) =>{
-    const response = await fetch("https://backendtzuzulcode.wl.r.appspot.com/auth/validate",{
+    /*const response = await fetch("https://backendtzuzulcode.wl.r.appspot.com/auth/validate",{
         method: "POST",
         credentials: 'include'
     })
@@ -30,17 +39,23 @@ export const validate = createAsyncThunk("user/validate", async(params,thunkAPI)
     if(!data.logged) {
         return thunkAPI.rejectWithValue("Error de validación")
     }
-    return data;
+    return data;*/
+    //axios
+    const response = await post("/auth/validate")
+    return response.data
 })
 
 export const logout = createAsyncThunk("user/logout", async() =>{
-    const response = await fetch("https://backendtzuzulcode.wl.r.appspot.com/auth/logout",{
+    /*const response = await fetch("https://backendtzuzulcode.wl.r.appspot.com/auth/logout",{
         method : "POST",
         credentials: 'include',
     })
 
     const data = await response.json();
-    return data;
+    return data;*/
+    //axios
+    const response = await post("/auth/logout")
+    return response.data
 })
 
 const userSlice = createSlice({
@@ -65,7 +80,7 @@ const userSlice = createSlice({
         })
         builder.addCase(login.fulfilled,(state,action) =>{
             state.logged = true
-            state.name = action.payload.firstname
+            state.name = action.payload.name
             state.loading = false
             state.error = false
             state.message = ""
@@ -83,7 +98,7 @@ const userSlice = createSlice({
         })
         builder.addCase(validate.fulfilled,(state,action) =>{
             state.logged = true
-            state.name = action.payload.user.firstName
+            state.name = action.payload.user.name
             state.error = false
             state.loading = false
             state.message = ""
@@ -106,7 +121,7 @@ const userSlice = createSlice({
             state.message = ""
         })
         builder.addCase(logout.rejected,(state,action) =>{
-            state.logged = true //false
+            state.logged = false
             state.name = ""
             state.loading = false
             state.error = true

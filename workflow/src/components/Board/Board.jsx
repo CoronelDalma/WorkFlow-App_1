@@ -39,7 +39,7 @@ const Board = ({nameTeam}) => {
           <h2 className='text-color-text-h font-bold text-2xl text-center mb-2'>{nameTeam}</h2>
           
          </div>
-         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 mt-10 rounded-md bg-gray-500'>
+         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 mt-10 rounded-md'>
           <List title={'Lista 1'} works={tasksMockup}/>
           <List title={'Lista 2'} works={tasksMockup}/>
           <List title={'Lista 3'} works={tasksMockup}/>

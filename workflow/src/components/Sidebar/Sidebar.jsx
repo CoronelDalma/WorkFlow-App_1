@@ -17,13 +17,13 @@ const Sidebar = () => {
   return (
     <div className='w-64 p-5 mt-2 rounded-l-md'>
         <Link to='/'>
-          <Logo widthLogo='80' height='24'/>
+          <Logo widthLogo='100' height='40' colorLetras='black'/>
         </Link>
         <nav className='mt-8'>
+          
           <Link to='/my-teams'>
           <h3 className='text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Equipos de trabajo</h3>
           </Link>
-          
           
           <div className="mt-3 -mx-3">
           {
