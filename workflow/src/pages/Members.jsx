@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar/Sidebar'
-import { get, post } from '../api'
+import { get, post, del } from '../api'
 import MemberData from '../components/Members/MemberData';
 import {MdEdit, MdDelete} from 'react-icons/md'
 import ChangeRoleModal from '../components/Modal/ChangeRoleModal';
+import DeleteMemberModal from '../components/Modal/DeleteMemberModal';
 
 const Members = () => {
     const [myTeams, setMyTeams] = useState(); 
     const [editModalOpened,setEditModalOpened] = useState(false)
+    const [delModalOpened,setDelModalOpened] = useState(false)
     const [idTeamEdit, setIdTeamedit] = useState("")
 
     const handleEdit = (id) =>{
       setIdTeamedit(id)
       setEditModalOpened(true)
     }
+
+     const handleDelete = (id) => {
+       setIdTeamedit(id)
+       setDelModalOpened(true)
+     }
     const edit = (event) => {
       event.preventDefault()
       const {idTeam,idMember,newRole} = event.target
@@ -31,6 +38,24 @@ const Members = () => {
       })
       .catch(error => console.log(error))
       setEditModalOpened(false);
+    }
+
+    const deleteMember = (event) => {
+      event.preventDefault()
+      const {idTeam,idMember} = event.target
+      const delData = {
+          idTeam: idTeam.value,
+          idMember: idMember.value,
+      }
+      del("/teams/removeMember",delData)
+      .then(res => {
+        get("/teams")
+        .then(res => setMyTeams(res.data))
+        .catch(error => console.log(error))
+
+      })
+      .catch(error => console.log(error))
+      setDelModalOpened(false);
     }
 
     useEffect(() => {
@@ -63,7 +88,9 @@ const Members = () => {
                             <ChangeRoleModal setModalOpen={setEditModalOpened} change={edit} idTeam={idTeamEdit} idMember={member._id._id} name={member._id.name}/>
                         } 
 
-                        <button><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
+                        <button onClick={()=>{handleDelete(team._id)}}><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
+                        {delModalOpened&&
+                         <DeleteMemberModal setModalOpen={setDelModalOpened} action={deleteMember} idTeam={idTeamEdit} idMember={member._id._id}/>}
                       </div>
                     </div>
                   ))}
