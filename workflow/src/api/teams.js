@@ -22,3 +22,25 @@ export async function addTeam(credentials){
     return data;
 }
 
+export async function getLists() {
+    const response = await fetch("http://localhost:3004/lists");
+    const data = await response.json();
+    return data;
+}
+
+export async function addList(credentials){
+    const response = await fetch("http://localhost:3004/lists/",{
+        method : "POST",
+        credentials: 'include',
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: new Date().getTime().toString(),
+            name: credentials.name,
+        })
+    })
+    const data = await response.json();
+    return data;
+}
+

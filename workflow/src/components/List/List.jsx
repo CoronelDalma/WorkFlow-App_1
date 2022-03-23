@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Droppable } from 'react-beautiful-dnd'
 import Button from '../Buttons/Button'
 import NewWorkModal from '../Modal/NewWorkModal'
 import AddCardOrList from './AddCardOrList'
@@ -7,7 +8,7 @@ import CardList from './CardList'
 import ListTitle from './ListTitle'
 
 
-const List = ({title,works}) => {
+const List = ({title,works, prefix}) => {
     const [tasks, settasks] = useState(works)
     const [modalOpened,setModalOpened] = useState(false)
 
@@ -28,19 +29,28 @@ const List = ({title,works}) => {
       setModalOpened(false);
   }
   return (
-    <div className='max-w-xl bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md'>
+    <div className='min-w-fit bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md'>
         <ListTitle title={title}/>
-        {
-            tasks.map((task) =>
-               <CardList work={task} key={task.id}/>
-            )
-        }
+        <Droppable droppableId={`${prefix}`}>
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {
+                tasks.map((task, i) =>
+                  <CardList work={task} key={task.id} index={i}/>
+                )
+              }
+              {provided.placeholder}
+            </div>
+
+          )}
+        </Droppable>
 
         <Button onClick={()=>{setModalOpened(true)}}>Agregar tarea</Button>
         {modalOpened&&
             <NewWorkModal setModalOpen={setModalOpened} addWork={add}/>
       
         } 
+
     </div>
   )
 }

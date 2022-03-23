@@ -61,12 +61,62 @@
       "cover": ""
     }
   ],
-  "posts": [
+  "lists": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "idTeam": "1",
+      "title": "Frontend",
+      "tasks":[
+        {
+          "id":"1",
+          "img": "",
+          "title":"Tarea1",
+          "date":"2022-3-18",
+          "priority": 1,
+          "complete": false,
+          "validate": false,
+          "description": "Descripcion tarea 1"
+      },
+      {
+          "id":"2",
+          "img": "¿",
+          "title":"Tarea2",
+          "date": "2022-3-20",
+          "priority":1,
+          "complete": false,
+          "validate": false,
+          "description": "Soy la descripción de la tarea 2"
+      }
+      ]  
+    },
+    {
+      "id": 2,
+      "idTeam": "1",
+      "title": "Backend",
+      "tasks":[
+        {
+          "id":"3",
+          "img": "",
+          "title":"Tarea1",
+          "date":"2022-3-18",
+          "priority": 1,
+          "complete": false,
+          "validate": false,
+          "description": "Descripcion tarea 1"
+      },
+      {
+          "id":"4",
+          "img": "¿",
+          "title":"Tarea2",
+          "date": "2022-3-20",
+          "priority":1,
+          "complete": false,
+          "validate": false,
+          "description": "Soy la descripción de la tarea 2"
+      }
+      ]  
     }
+
   ],
   "comments": [
     {
