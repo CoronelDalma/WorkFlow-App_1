@@ -8,6 +8,7 @@ import NewTeamModal from '../Modal/NewTeamModal'
 
 //api
 import { get, post } from '../../api'
+import { Link } from 'react-router-dom'
 //import { getTeams, addTeam } from "../../api/teams";
 
 
@@ -52,9 +53,11 @@ const Main = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 mt-10 rounded-md'>
             {
              myTeams.map((team) =>(
-              <MiniBoard key={team._id} name={team.name} url={'/my-teams/'+team._id} description={team.description} cover={team.img}/>
-             )
-             )
+               <Link to={'/my-teams/'+team._id} key={team._id}>
+                <MiniBoard  name={team.name} description={team.description} cover={team.img}/>
+               </Link>
+              
+             ))
             }
 
           </div>

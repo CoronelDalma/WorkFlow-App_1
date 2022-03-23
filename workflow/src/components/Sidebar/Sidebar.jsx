@@ -27,9 +27,8 @@ const Sidebar = () => {
         <nav className='mt-8'>
           
           <Link to='/my-teams'>
-          <h3 className='text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Equipos de trabajo</h3>
+          <h3 className='text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Mis equipos de trabajo</h3>
           </Link>
-          
           <div className="mt-3 -mx-3">
           {
             
@@ -38,7 +37,9 @@ const Sidebar = () => {
             ))
           }
           </div>
-
+          <Link to='/members'>
+          <h3 className='text-sm mt-2 text-color-tertiary font-semibold uppercase tracking-wide'>Colaboradores</h3>
+          </Link>
           <h3 className='mt-6 text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Tareas</h3>
           <div className="mt-3 -mx-3">
           {

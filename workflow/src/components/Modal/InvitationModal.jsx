@@ -1,5 +1,6 @@
 import React from 'react'
 import {FaWindowClose} from 'react-icons/fa'
+import Button from '../Buttons/Button'
 
 const InvitationModal = ({setModalOpen, addInvitation}) => {
   return (
@@ -14,9 +15,9 @@ const InvitationModal = ({setModalOpen, addInvitation}) => {
                 <input className='p-4 bg-lavender-100 outline-none border focus:border-lavender-600 my-5 rounded-md' name='email' placeholder='Email...' type="text" required/>
                 <input className='p-4 bg-lavender-100 outline-none border focus:border-lavender-600 my-5 rounded-md' name='role' placeholder='Role...' type="text" />
                 <input className='p-4 bg-lavender-100 outline-none border focus:border-lavender-600 my-5 rounded-md' name='description' placeholder='Description...' type="text" required/>
-                <button className='bg-gradient-to-r from-purple-700 to-blue-500 
+                <Button className='bg-gradient-to-r from-purple-700 to-blue-500 
                                 hover:from-purple-600 hover:to-blue-400 rounded-lg 
-                                px-2 text-white font-bold'>Mandar invitacion</button>
+                                px-2 text-white font-bold'>Mandar invitacion</Button>
             </form>
  
         </div>
