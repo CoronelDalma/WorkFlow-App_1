@@ -76,7 +76,9 @@ const userSlice = createSlice({
         name:"",
         loading:false,
         error: true,
-        message:""
+        message:"",
+        role: null,
+        id: ""
     },
     reducers:{
 
@@ -95,13 +97,13 @@ const userSlice = createSlice({
             state.loading = false
             state.error = false
             state.message = ""
+            state.role = action.payload.role
         })
         builder.addCase(login.rejected,(state,action) =>{
             state.logged = false
             state.loading = false
             state.error = true
             state.message = action.error.message
-            console.log(action)
         })
         //validate
         builder.addCase(validate.pending,(state,action) =>{
@@ -114,6 +116,8 @@ const userSlice = createSlice({
             state.error = false
             state.loading = false
             state.message = ""
+            state.role = action.payload.user.role
+            state.id = action.payload.user.id
         })
         builder.addCase(validate.rejected,(state,action) =>{
             state.logged = false
@@ -160,7 +164,7 @@ const userSlice = createSlice({
             state.loading = false
             state.error = true
             state.message = action.payload.message
-            console.log(action.payload)
+            
         })
     }
 

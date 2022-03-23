@@ -24,7 +24,7 @@ const Header = () => {
               <NavItem to="/" title={"Link"}/>
 
               {user.logged?<li onClick={signOut}>Cerrar sesión</li>:<NavItem to="/login" title={"Iniciar sesión"}/>}
-              {user.logged&&<p className='mx-2 text-white'>{user.name}</p>}
+              {user.logged&&<p className='mx-2 text-white'>{user.name}-{user.role}</p>}
           </ul>
           <button onClick={()=>{setOpenMenu(!openMenu)}} className='block md:hidden mr-2 md:mr-0'>{openMenu?<FiXCircle className='h-5 w-5'/>:<FiMenu className='h-5 w-5'/>}</button>
         </div>
