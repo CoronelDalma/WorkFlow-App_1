@@ -1,13 +1,16 @@
-import React from 'react'
-import Fondo from '../components/layouts/Fondo'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar/Sidebar'
-import Board from '../components/Board/Board'
+import Team from '../components/Team/Team'
+import { useParams } from 'react-router-dom'
+
 
 const TeamPage = () => {
+  const params = useParams()
+  
   return (
     <div className='page h-screen flex'>
       <Sidebar/>
-      <Board nameTeam={"Soy el Equipo 1"}/>
+      <Team idTeam={params.idTeam}/>
     </div>
   )
 }

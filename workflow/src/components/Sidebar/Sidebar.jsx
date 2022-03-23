@@ -34,7 +34,7 @@ const Sidebar = () => {
           {
             
             myTeams.map((team) =>(
-              <LinksSidebar key={team._id} texto={team.name} url="/team"/>
+              <LinksSidebar key={team._id} texto={team.name} url={"/my-teams/"+team._id}/>
             ))
           }
           </div>

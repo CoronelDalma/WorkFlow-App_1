@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/my-teams" element={<PrivateRoute><MyTeams/></PrivateRoute>}/>
-        <Route path="/team" element={<PrivateRoute><TeamPage/></PrivateRoute>}/>
+        <Route path="/my-teams/:idTeam" element={<PrivateRoute><TeamPage/></PrivateRoute>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="*" element={<NotFound/>}/>

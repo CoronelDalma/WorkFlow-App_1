@@ -6,9 +6,11 @@ import ProfilePicMini from '../ProfilePic/ProfilePic';
 import InvitationModal from '../Modal/InvitationModal'
 
 import Button from '../Buttons/Button';
+import { useSelector } from 'react-redux';
 
-const Main_header = ({username='Usuario',url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}) => {
+const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}) => {
   const [modalOpened,setModalOpened] = useState(false)
+  const user = useSelector((state) => state.user);
 
   const add = (event) => {
     event.preventDefault();
@@ -32,7 +34,7 @@ const Main_header = ({username='Usuario',url_pic='https://cdn.pixabay.com/photo/
           </div>
           
           <div className='flex gap-2 items-center'>
-              <p className='leading-7'>{username}</p>
+              <p className='leading-7'>{user.name}</p>
               <button >
                 <img src={url_pic} alt="profile pic" className='w-8 h-8 rounded-full object-cover' />
               </button>
