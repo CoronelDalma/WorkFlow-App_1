@@ -40,23 +40,14 @@ const Team = ({idTeam}) => {
   
   // ---- DRAGGABLE ----
   const removeFromList = (list, index) => {
-    //const result = Object.values(list); //pasdar a array lo q sea list Array.from(list)
     const result = list.tasks
-    //console.log("Tasks de origen")
-    //console.log(result)
+
     const [removed] = result.splice(index, 1);
-    //console.log("elemento a cambiar")
-    //console.log(removed)
-    //console.log("lista resultado sin elemento")
-    //console.log(result)
-  
-    //console.log(result)
-    //console.log(list.tasks)
     return [removed, result];
   };
 
   const addToList = (list, index, element) => {
-    //const result = Array.from(list);
+
     const result = list.tasks
     result.splice(index, 0, element);
     return result;
@@ -64,10 +55,7 @@ const Team = ({idTeam}) => {
 
   const reorder = (list,startIndex,endIndex) =>{
     const res = list.tasks;
-    //console.log(res)
     const [removed] = res.splice(startIndex,1);
-    //console.log(removed)
-    //console.log(list)
     res.splice(endIndex,0,removed)
     return res;
   }
@@ -76,17 +64,9 @@ const Team = ({idTeam}) => {
     if (!result.destination) return;
     
     const listCopy = {...lists}
-    //console.log(listCopy)
-    //console.log("dejo la lista: ")
-    //console.log(result.source.droppableId)
-    //console.log("voy a la lista: ")
-    //console.log(result.destination.droppableId)
+
     const sourceList = listCopy[result.source.droppableId]
-    //console.log("la lista origen es:")
-    //console.log(sourceList)
-    //console.log("#elemento q sale de la lista")
-    //console.log(result.source.index)
-    //console.log(result.destination.index)
+
     if(result.source.droppableId !== result.destination.droppableId){
       const [removedElement, newSourceList] = removeFromList(sourceList, result.source.index)
       listCopy[result.source.droppableId] = newSourceList;
