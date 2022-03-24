@@ -29,11 +29,13 @@ const List = ({title,works, prefix}) => {
       setModalOpened(false);
   }
   return (
-    <div className='min-w-fit bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md'>
-        <ListTitle title={title}/>
-        <Droppable droppableId={`${prefix}`}>
-          {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef}>
+    <div className='w-96 min-h-full bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md'>
+   
+        <Droppable droppableId={`${prefix}`} >
+          {(provided, snapshot) => {
+            return (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                <ListTitle title={title}/>
               {
                 tasks.map((task, i) =>
                   <CardList work={task} key={task.id} index={i}/>
@@ -41,15 +43,16 @@ const List = ({title,works, prefix}) => {
               }
               {provided.placeholder}
             </div>
+            )
+          }}
 
-          )}
         </Droppable>
-
         <Button onClick={()=>{setModalOpened(true)}}>Agregar tarea</Button>
         {modalOpened&&
             <NewWorkModal setModalOpen={setModalOpened} addWork={add}/>
       
         } 
+
 
     </div>
   )

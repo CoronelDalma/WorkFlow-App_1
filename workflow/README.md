@@ -72,3 +72,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### server json
 json-server --watch db.json --port 3004
+
+### uuid
+npm install uuid
+import uuid from "uuid/v4";

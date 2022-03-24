@@ -63,61 +63,112 @@
   ],
   "lists": [
     {
-      "id": 1,
+      "id": "1",
       "idTeam": "1",
       "title": "Frontend",
       "tasks":[
         {
-          "id":"1",
-          "img": "",
-          "title":"Tarea1",
-          "date":"2022-3-18",
-          "priority": 1,
-          "complete": false,
-          "validate": false,
-          "description": "Descripcion tarea 1"
-      },
-      {
-          "id":"2",
-          "img": "¿",
-          "title":"Tarea2",
-          "date": "2022-3-20",
-          "priority":1,
-          "complete": false,
-          "validate": false,
-          "description": "Soy la descripción de la tarea 2"
-      }
-      ]  
+        "id":"11",
+        "idList":"1",
+        "img": "",
+        "title":"Tarea1",
+        "date":"2022-3-18",
+        "priority": 1,
+        "complete": false,
+        "validate": false,
+        "description": "Descripcion tarea 1"
     },
     {
-      "id": 2,
+        "id":"21",
+        "idList":"1",
+        "img": "¿",
+        "title":"Tarea2",
+        "date": "2022-3-20",
+        "priority":1,
+        "complete": false,
+        "validate": false,
+        "description": "Soy la descripción de la tarea 2"
+    },
+    {
+      "id":"31",
+      "idList":"2",
+      "img": "",
+      "title":"Tarea3",
+      "date":"2022-3-18",
+      "priority": 1,
+      "complete": false,
+      "validate": false,
+      "description": "Descripcion tarea 1"
+  }]
+       
+    },
+    {
+      "id": "3",
       "idTeam": "1",
       "title": "Backend",
       "tasks":[
         {
-          "id":"3",
-          "img": "",
-          "title":"Tarea1",
-          "date":"2022-3-18",
-          "priority": 1,
-          "complete": false,
-          "validate": false,
-          "description": "Descripcion tarea 1"
-      },
-      {
-          "id":"4",
+          "id":"41",
+          "idList":"2",
           "img": "¿",
-          "title":"Tarea2",
+          "title":"Tarea4",
           "date": "2022-3-20",
           "priority":1,
           "complete": false,
           "validate": false,
           "description": "Soy la descripción de la tarea 2"
       }
-      ]  
+      ]
+  
     }
 
   ],
+  "tasks":[
+    {
+      "id":"11",
+      "idList":"1",
+      "img": "",
+      "title":"Tarea1",
+      "date":"2022-3-18",
+      "priority": 1,
+      "complete": false,
+      "validate": false,
+      "description": "Descripcion tarea 1"
+  },
+  {
+      "id":"21",
+      "idList":"1",
+      "img": "¿",
+      "title":"Tarea2",
+      "date": "2022-3-20",
+      "priority":1,
+      "complete": false,
+      "validate": false,
+      "description": "Soy la descripción de la tarea 2"
+  },
+  {
+    "id":"31",
+    "idList":"2",
+    "img": "",
+    "title":"Tarea3",
+    "date":"2022-3-18",
+    "priority": 1,
+    "complete": false,
+    "validate": false,
+    "description": "Descripcion tarea 1"
+},
+{
+    "id":"41",
+    "idList":"2",
+    "img": "¿",
+    "title":"Tarea4",
+    "date": "2022-3-20",
+    "priority":1,
+    "complete": false,
+    "validate": false,
+    "description": "Soy la descripción de la tarea 2"
+}
+  ] ,
   "comments": [
     {
       "id": 1,

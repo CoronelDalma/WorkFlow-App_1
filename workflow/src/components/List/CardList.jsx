@@ -5,7 +5,7 @@ import { Draggable } from 'react-beautiful-dnd'
 
 const CardList = ({work, index}) => {
   return (
-    <Draggable draggableId={"draggable"+work.id} index={index}>
+    <Draggable draggableId={work.id} index={index}>
       {(provided, snapshot) => {
           return (
             <div className="max-w-sm rounded overflow-hidden shadow-lg mx-auto bg-color-bg-secondary mb-4"
@@ -29,6 +29,27 @@ const CardList = ({work, index}) => {
                 <p className="text-color-text-h text-sm">
                   {work.description}
                 </p>
+                <p className="text-color-text-h text-sm">
+                  {work.priority}
+                </p>
+                <p className="text-color-text-h text-sm">
+                  {work.date}
+                </p>
+ 
+                <div>
+                    <input type='checkbox' name='completed'
+                            className="h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"/>
+                    <label className="inline-block text-gray-800">
+                        Completado
+                    </label>
+                  </div>
+                <div>
+                    <input type='checkbox' name='validated'
+                            className="h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"/>
+                    <label className="inline-block text-gray-800">
+                        Validado
+                    </label>
+                  </div>
               </div>
               <div className="px-6 pt-4 pb-2">
                 <Tag text={'Nuevo'}/>

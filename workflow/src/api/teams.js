@@ -3,6 +3,16 @@ export async function getTeams() {
     const data = await response.json();
     return data;
 }
+export async function getLists() {
+    const response = await fetch("http://localhost:3004/lists");
+    const data = await response.json();
+    return data;
+}
+export async function getTasks() {
+    const response = await fetch("http://localhost:3004/tasks");
+    const data = await response.json();
+    return data;
+}
 
 export async function addTeam(credentials){
     const response = await fetch("http://localhost:3004/teams/",{
@@ -18,12 +28,6 @@ export async function addTeam(credentials){
             cover: credentials.cover
         })
     })
-    const data = await response.json();
-    return data;
-}
-
-export async function getLists() {
-    const response = await fetch("http://localhost:3004/lists");
     const data = await response.json();
     return data;
 }

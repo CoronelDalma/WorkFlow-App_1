@@ -3,10 +3,11 @@ import TeamHeader from './Team-header'
 import List from '../List/List'
 import { get } from '../../api'
 import NewListModal from '../Modal/NewListModal'
-import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import { DragDropContext} from 'react-beautiful-dnd'
 
 // FAke api
 import { getLists, addList } from "../../api/teams";
+
 
 const Team = ({idTeam}) => {
   const [team, setTeam] = useState();
@@ -18,7 +19,7 @@ const Team = ({idTeam}) => {
     const {name} = event.target
     const newList = {
           name:name.value
- 
+          //id: uuid()
     }
       //fake api
     addList(newList);
@@ -39,39 +40,71 @@ const Team = ({idTeam}) => {
   
   // ---- DRAGGABLE ----
   const removeFromList = (list, index) => {
-    const result = Array.from(list);
-    console.log(result)
+    //const result = Object.values(list); //pasdar a array lo q sea list Array.from(list)
+    const result = list.tasks
+    //console.log("Tasks de origen")
+    //console.log(result)
     const [removed] = result.splice(index, 1);
-    console.log(removed)
+    //console.log("elemento a cambiar")
+    //console.log(removed)
+    //console.log("lista resultado sin elemento")
+    //console.log(result)
+  
+    //console.log(result)
+    //console.log(list.tasks)
     return [removed, result];
-  }
+  };
 
-  const addToList = (list, index, elem) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(index,1, elem);
-    return [removed, result]
+  const addToList = (list, index, element) => {
+    //const result = Array.from(list);
+    const result = list.tasks
+    result.splice(index, 0, element);
+    return result;
+  };
+
+  const reorder = (list,startIndex,endIndex) =>{
+    const res = list.tasks;
+    //console.log(res)
+    const [removed] = res.splice(startIndex,1);
+    //console.log(removed)
+    //console.log(list)
+    res.splice(endIndex,0,removed)
+    return res;
   }
 
   const onDragEnd = (result) => {
-    if (!result.destination){
-      return;
+    if (!result.destination) return;
+    
+    const listCopy = {...lists}
+    //console.log(listCopy)
+    //console.log("dejo la lista: ")
+    //console.log(result.source.droppableId)
+    //console.log("voy a la lista: ")
+    //console.log(result.destination.droppableId)
+    const sourceList = listCopy[result.source.droppableId]
+    //console.log("la lista origen es:")
+    //console.log(sourceList)
+    //console.log("#elemento q sale de la lista")
+    //console.log(result.source.index)
+    //console.log(result.destination.index)
+    if(result.source.droppableId !== result.destination.droppableId){
+      const [removedElement, newSourceList] = removeFromList(sourceList, result.source.index)
+      listCopy[result.source.droppableId] = newSourceList;
+      const destinationList = listCopy[result.destination.droppableId]
+      listCopy[result.destination.droppableId] = addToList(
+        destinationList, result.destination.index, removedElement
+      )
+    }else {
+      //console.log("misma lista")
+      reorder(sourceList,result.source.index, result.destination.index)
+   
     }
-    const listCopy = {...lists};
-    //console.log(result.source)
-    const sourceList = listCopy[result.source.droppableId];
-    console.log(sourceList)
-    const [removedElement, newSourceList] = removeFromList(sourceList, result.source.index);
 
-    listCopy[result.source.droppableId] = newSourceList;
-    const destinationList = listCopy[result.destination.droppableId]
-    listCopy[result.destination.droppableId] = addToList(
-      destinationList,
-      result.destination.index,
-      removedElement
-    )
-    setLists(listCopy)
+    //console.log(listCopy)
+    //setLists({...listCopy})
+  };
 
-  }
+  
 
   return (
     <div className='flex-1 min-w-0 h-fit bg-gradient-to-br from-color-btn via-orange-50 to-color-bg-secondary mt-2 rounded-r-md'>
@@ -97,8 +130,8 @@ const Team = ({idTeam}) => {
 
                 <div className='flex overflow-x-scroll gap-3 mt-10 rounded-md'>
                   {
-                    lists.map((list) =>(
-                      <List title={list.title} works={list.tasks} key={list.id} prefix={list.id}/>
+                    lists.map((list,index) =>(
+                      <List title={list.title} works={list.tasks} key={list.id} prefix={index}/>
                     ))
                   }
 
