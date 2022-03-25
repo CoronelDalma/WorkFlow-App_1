@@ -9,10 +9,10 @@ const TeamPage = () => {
   const params = useParams()
   
   return (
-    <main className='grid grid-flow-col w-full'>
+    <main className='flex w-full'>
       <Sidebar/>
       <Fondo>
-        <div className='bg-slate-500 w-full'>
+        <div className='w-full'>
           <Team idTeam={params.idTeam}/>
         </div>
  

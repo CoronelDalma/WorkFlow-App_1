@@ -7,7 +7,7 @@ import Fondo from '../components/layouts/Fondo'
 const Home = () => {
 
   return (
-    <main className='grid grid-flow-col w-full'>
+    <main className='flex w-full'>
       <Sidebar/>
       <Fondo>
         <Main/>

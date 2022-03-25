@@ -66,10 +66,10 @@ const Members = () => {
       },[])
 
   return (
-    <main className='grid grid-flow-col w-full'>
+    <main className='flex w-full'>
       <Sidebar/>
       <Fondo>
-        <div className='w-full h-fit p-3 rounded-r-md px-9'>
+        <div className='w-full h-fit p-3 rounded-r-md'>
             <h1 className='text-2xl font-bold py-4'>Mis colaboradores</h1>
             <hr></hr>
             {console.log(myTeams)}
