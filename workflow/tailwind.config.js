@@ -20,6 +20,9 @@ module.exports = {
         'color-bg-secondary': '#d1d1e9',
         'color-border': '#2b2c34',
         'color-tertiary': '#e45858',
+        'fondo1':'#003f90',
+        'fondo2': '#1C1D74',
+        'fondo3': '#F83798'
       }
       
       }

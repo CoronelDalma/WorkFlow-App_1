@@ -2,13 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Logo from '../SVG-reutilizable/Logo'
 import LinksSidebar from './LinksSidebar';
+import {BsArrowLeftCircleFill} from 'react-icons/bs'
+import {AiFillHome} from 'react-icons/ai'
+import {RiTeamFill} from 'react-icons/ri'
+import {MdDashboardCustomize, MdMarkEmailRead} from 'react-icons/md'
+import {FaTasks,FaTags} from 'react-icons/fa'
+import { setOpen } from '../../features/sidebarSlice';
 
 //fake api
 //import { getTeams} from "../../api/teams";
 import { get } from '../../api'
+import TextSidebar from './TextSidebar';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Sidebar = () => {
+  const open = useSelector((state) => state.sidebar);
+  const dispatch = useDispatch()
+
   const [myTeams, setMyTeams] = useState([]);
+
 
 /*  useEffect(() => {
     getTeams().then((data) => setMyTeams(data));
@@ -18,16 +30,23 @@ const Sidebar = () => {
     .then(res => setMyTeams(res.data))
     .catch(error => console.log(error))
   },[])
-    
+    {/*    <div className='w-64 p-5 mt-2 rounded-md fixed top-8 left-8 z-50 bg-orange-500'>*/}
   return (
-    <div className='w-64 p-5 mt-2 rounded-l-md'>
-        <Link to='/'>
-          <Logo widthLogo='100' height='40' colorLetras='black'/>
+
+    <div className={`${open?"w-64 p-5" : "w-20 px-3 py-5"} duration-300 rounded-md bg-orange-500 relative`}>
+        <button className='absolute cursor-pointer -right-2 top-9 text-white'
+                onClick={() => dispatch(setOpen(open))}>
+                  <BsArrowLeftCircleFill className={`w-8 h-8 ${!open&&"rotate-180"}`}/>
+        </button>
+        <Link to='/' className='flex gap-x-4 items-center'>
+          <span><AiFillHome className='w-9 h-9 duration-500'/></span>
+          <h2 className={`font-bold text-2xl origin-left duration-300 ${!open&& "scale-0"}`}>Home</h2>
         </Link>
         <nav className='mt-8'>
           
-          <Link to='/my-teams'>
-          <h3 className='text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Mis equipos de trabajo</h3>
+          <Link to='/my-teams' className='flex gap-x-4 items-center'>
+            <span><MdDashboardCustomize className='w-5 h-5 duration-500'/></span>
+            <TextSidebar text={"Mis equipos de trabajo"} openSidebar={open}/>
           </Link>
           <div className="mt-3 -mx-3">
           {
@@ -37,10 +56,15 @@ const Sidebar = () => {
             ))
           }
           </div>
-          <Link to='/members'>
-          <h3 className='text-sm mt-2 text-color-tertiary font-semibold uppercase tracking-wide'>Colaboradores</h3>
+          <Link to='/members' className='flex gap-x-4 items-center mt-4'>
+            <span><RiTeamFill className='w-5 h-5 duration-500'/></span>
+            <TextSidebar text={"Colaboradores"} openSidebar={open}/>
           </Link>
-          <h3 className='mt-6 text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Tareas</h3>
+
+          <Link to='#' className='flex gap-x-4 items-center mt-4'>
+            <span><FaTasks className='w-5 h-5 duration-500'/></span>
+            <TextSidebar text={"Tareas"} openSidebar={open}/>
+          </Link>
           <div className="mt-3 -mx-3">
           {
             
@@ -50,7 +74,10 @@ const Sidebar = () => {
           }
           </div>
 
-          <h3 className='mt-6 text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Tags</h3>
+          <Link to='#' className='flex gap-x-4 items-center mt-4'>
+            <span><FaTags className='w-5 h-5 duration-500'/></span>
+            <TextSidebar text={"Tags"} openSidebar={open}/>
+          </Link>
           <div className="mt-3 -mx-3">
           {
             
@@ -60,15 +87,10 @@ const Sidebar = () => {
           }
           </div>
 
-          <h3 className='mt-6 text-sm text-color-tertiary font-semibold uppercase tracking-wide'>Invitaciones</h3>
-          <div className="mt-3 -mx-3">
-          {
-            
-            myTeams.map((tablero) =>(
-              <LinksSidebar key={tablero.id} texto={tablero.name} url="#"/>
-            ))
-          }
-          </div>
+          <Link to='#' className='flex gap-x-4 items-center mt-4'>
+            <span><MdMarkEmailRead className='w-5 h-5 duration-500'/></span>
+            <TextSidebar text={"Invitaciones"} openSidebar={open}/>
+          </Link>
           
         </nav>
     </div>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Fondo = ({children}) => {
   return (
-    <div className='bg-gradient-to-br from-purple-600 via-orange-50 to-orange-600 w-full h-screen flex'>
+    <div className='bg-gradient-to-br from-fondo1 via-violet-600 to-fuchsia-500 w-full min-h-screen flex'>
         {children}
     </div>
   )

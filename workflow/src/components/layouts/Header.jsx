@@ -15,10 +15,10 @@ const Header = () => {
         dispatch(logout())
       }
   return (
-      <nav className="bg-color-btn py-3">
+      <nav className="bg-color-btn py-3 z-999">
         <div className='max-w-screen-xl mx-auto flex justify-between relative pr-6'>
-          <Link to="/"><Logo/></Link>
-          <ul className={`${openMenu?"block":"hidden"} bg-purple-400 md:bg-transparent text-right md:flex absolute right-0 top-7 md:static p-2 pl-10 md:p-0 md space-y-2 md:space-y-0`}>
+          <Link to="/"><Logo className='w-44'/></Link>
+          <ul className={`${openMenu?"block":"hidden"} bg-blue-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 md:flex absolute right-0 top-7 md:static p-2 pl-10 md:p-0 md space-y-2 md:space-y-0`}>
               <NavItem to="/" title={"Link"}/>
               <NavItem to="/" title={"Link"}/>
               <NavItem to="/" title={"Link"}/>

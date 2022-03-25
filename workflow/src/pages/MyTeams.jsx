@@ -1,17 +1,20 @@
 import React from 'react'
 import Sidebar from '../components/Sidebar/Sidebar'
 import Main from '../components/Main/Main'
+import Fondo from '../components/layouts/Fondo'
 
 
 const Home = () => {
 
   return (
-    <div className='page h-screen flex'>
+    <main className='grid grid-flow-col w-full'>
       <Sidebar/>
-      <Main/>
+      <Fondo>
+        <Main/>
+      </Fondo>
 
-    </div>
-    
+ 
+    </main> 
   )
 }
 

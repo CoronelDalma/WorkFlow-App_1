@@ -39,7 +39,7 @@ const Main = () => {
   },[])
 
   return (
-    <div className='flex-1 min-w-0 h-fit mt-2 rounded-r-md bg-color-bg-secondary'>
+    <div className='w-full h-fit rounded-r-md'>
         <MainHeader/>
         <div className='p-6'>
           <div className='flex justify-evenly'>

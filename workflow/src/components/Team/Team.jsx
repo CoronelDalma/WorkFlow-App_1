@@ -87,43 +87,46 @@ const Team = ({idTeam}) => {
   
 
   return (
-    <div className='flex-1 min-w-0 h-fit bg-gradient-to-br from-color-btn via-orange-50 to-color-bg-secondary mt-2 rounded-r-md'>
-       {modalOpened&&<NewListModal setModalOpen={setModalOpened} add={addList}/> }
-        <TeamHeader/>
+  
+      <div className='h-fit rounded-r-md'>
+        {modalOpened&&<NewListModal setModalOpen={setModalOpened} add={addList}/> }
+          <TeamHeader/>
+          
+          <DragDropContext onDragEnd={onDragEnd}>
+            {/* <MainContent/>*/}
+            {team? 
+              <div className='p-6'>
+                <div className='flex justify-between'>
+                  <div>
+                      <h2 className='text-color-text-h font-bold text-2xl mb-2'>
+                              {team.name}</h2>
+                      <p>Descripción: {team.description}</p>
+                  </div>
+
+                  <button className='ml-auto border-2 border-color-tertiary rounded-md px-2 text-color-tertiary' onClick={()=>{setModalOpened(true)}}> +Nueva lista</button>
+                  <button className='ml-auto'>Colaboradores</button>
         
-        <DragDropContext onDragEnd={onDragEnd}>
-          {/* <MainContent/>*/}
-          {team? 
-            <div className='p-6'>
-              <div className='flex justify-between'>
-                <div>
-                    <h2 className='text-color-text-h font-bold text-2xl mb-2'>
-                            {team.name}</h2>
-                    <p>Descripción: {team.description}</p>
                 </div>
 
-                <button className='ml-auto border-2 border-color-tertiary rounded-md px-2 text-color-tertiary' onClick={()=>{setModalOpened(true)}}> +Nueva lista</button>
-                <button className='ml-auto'>Colaboradores</button>
-      
+
+                  <div className='flex overflow-x-scroll gap-3 mt-10 rounded-md'>
+                    {
+                      lists.map((list,index) =>(
+                        <List title={list.title} works={list.tasks} key={list.id} prefix={index}/>
+                      ))
+                    }
+
+                  </div>
               </div>
+              :
+              <p>Loading...</p>
+            }
 
+          </DragDropContext>
+        
+      </div>
 
-                <div className='flex overflow-x-scroll gap-3 mt-10 rounded-md'>
-                  {
-                    lists.map((list,index) =>(
-                      <List title={list.title} works={list.tasks} key={list.id} prefix={index}/>
-                    ))
-                  }
-
-                </div>
-            </div>
-            :
-            <p>Loading...</p>
-          }
-
-        </DragDropContext>
-       
-    </div>
+    
   )
 }
 
