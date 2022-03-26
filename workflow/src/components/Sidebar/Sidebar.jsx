@@ -33,7 +33,7 @@ const Sidebar = () => {
     {/*    <div className='w-64 p-5 mt-2 rounded-md fixed top-8 left-8 z-50 bg-orange-500'>*/}
   return (
 
-    <div className={`${open?"w-64 p-5" : "w-[120px] md:w-20 px-3 py-5 overflow-hidden"} duration-300 rounded-md bg-color-bg-secondary relative`}>
+    <div className={`${open?"w-64 p-5" : "w-[120px] md:w-20 px-3 py-5 overflow-hidden"} duration-300 rounded-l-md bg-color-bg-secondary relative`}>
         <button className='absolute cursor-pointer -right-2 top-9 text-white'
                 onClick={() => dispatch(setOpen(open))}>
                   <BsArrowLeftCircleFill className={`w-8 h-8 ${!open&&"rotate-180"} rounded-full`}/>

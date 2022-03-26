@@ -31,12 +31,12 @@ const List = ({ prefix, data}) => {
     }
    
   return (
-    <div className='w-96 min-h-full bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md'>
+    <div className=' bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md '>
    
         <Droppable droppableId={`${prefix}`} >
           {(provided, snapshot) => {
             return (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
+              <div {...provided.droppableProps} ref={provided.innerRef} className='w-[300px] overflow-auto h-full'>
                 <ListTitle name={list.name} description={list.description}/>
                 {console.log(list)}
               {

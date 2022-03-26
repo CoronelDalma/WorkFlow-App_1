@@ -11,14 +11,8 @@ const TeamPage = () => {
   return (
     <main className='flex w-full'>
       <Sidebar/>
-      <Fondo>
-        <div className='w-full'>
-          <Team idTeam={params.idTeam}/>
-        </div>
- 
-      </Fondo>
-
- 
+     
+      <Team idTeam={params.idTeam}/>
     </main>
 
   )

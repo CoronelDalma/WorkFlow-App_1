@@ -24,7 +24,7 @@ const CardList = ({work, index, idList}) => {
     <Draggable draggableId={work._id} index={index}>
       {(provided, snapshot) => {
           return (
-            <div className="max-w-sm rounded overflow-hidden shadow-lg mx-auto bg-color-bg-secondary mb-4"
+            <div className="w-[250px] rounded  shadow-lg mx-auto bg-color-bg-secondary mb-4"
                   ref={provided.innerRef}
                   snapshot={snapshot}
                   {...provided.draggableProps}
