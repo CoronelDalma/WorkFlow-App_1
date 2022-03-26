@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TeamHeader from './Team-header'
 import List from '../List/List'
-import { get, post } from '../../api'
+import { get, post, del } from '../../api'
 import NewListModal from '../Modal/NewListModal'
 import { DragDropContext} from 'react-beautiful-dnd'
 
@@ -36,16 +36,14 @@ const Team = ({idTeam}) => {
     })
     .catch(error => console.log(error))
     setModalOpened(false);
-} 
+  } 
 
   useEffect(() => {
-    //-- fake
-    //getLists().then((data) => setLists(data));
     //api
     get("/teams/"+idTeam)
     .then(res => {
       setTeam(res.data)
- 
+      console.log(res.data)
     })
     .catch(error => console.log(error))
   },[idTeam])
@@ -124,7 +122,7 @@ const Team = ({idTeam}) => {
                 <div className='h-[500px] w-[75vw] overflow-x-scroll flex gap-3 mt-10 pb-3 rounded-md mx-auto '>
                   {team&&
                     team.lists.map((list,index) =>(
-                      <List key={list._id} prefix={index} data={list}/>
+                      <List key={list._id} prefix={index} data={list} idTeam={idTeam} setTeam={setTeam}/>
       
                     ))
                   }
