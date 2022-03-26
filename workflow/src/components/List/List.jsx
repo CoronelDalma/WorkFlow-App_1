@@ -5,14 +5,16 @@ import NewWorkModal from '../Modal/NewWorkModal'
 import  { Navigate } from 'react-router-dom'
 import CardList from './CardList'
 import ListTitle from './ListTitle'
-import {FiDelete} from 'react-icons/fi'
+import {FiDelete, FiEdit} from 'react-icons/fi'
 //api
-import { get, post, del } from '../../api'
+import { get, post, del, put } from '../../api'
+import EditListModal from '../Modal/EditListModal'
 
 
 const List = ({ prefix, data,idTeam, setTeam}) => {
     const [tasks, setTasks] = useState(data.tasks)
     const [modalOpened,setModalOpened] = useState(false)
+    const [editListOpened,setEditListOpened] = useState(false)
     const [list, setList] = useState(data)
 
     const add = (event) => {
@@ -41,6 +43,20 @@ const List = ({ prefix, data,idTeam, setTeam}) => {
       .catch(error => console.log(error))
   
     }
+    const updateList = (event) =>{
+      event.preventDefault();
+      const {description} = event.target
+      const newList = {
+            description: description.value
+      }
+      put("/lists/"+list._id,newList)
+      .then(res => {
+        setList(res.data)
+      })
+      .catch(error => console.log(error))
+      setEditListOpened(false);
+  
+    }
   return (
     <div className=' bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md '>
    
@@ -50,9 +66,18 @@ const List = ({ prefix, data,idTeam, setTeam}) => {
               <div {...provided.droppableProps} ref={provided.innerRef} className='w-[300px] overflow-auto h-full'>
                 <div className='flex justify-between'>
                   <ListTitle name={list.name} description={list.description}/>
+                  <button onClick={()=>{setEditListOpened(true)}}>                    
+                      <FiEdit className='text-color-tertiary font-semibold w-6 h-6'/>
+                  </button>
+                    {editListOpened&&
+                        <EditListModal setModalOpen={setEditListOpened} action={updateList} data={list.description} idList={list._id}/>
+
+                    } 
+
                   <button onClick={()=> deleteList(list._id)}>
                     <FiDelete className='text-color-tertiary font-semibold w-6 h-6'/>
                   </button>
+
                 </div>
 
               {
@@ -69,9 +94,8 @@ const List = ({ prefix, data,idTeam, setTeam}) => {
         <Button onClick={()=>{setModalOpened(true)}}>Agregar tarea</Button>
         {modalOpened&&
             <NewWorkModal setModalOpen={setModalOpened} addWork={add}/>
-      
-        } 
 
+        } 
 
     </div>
   )

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import TeamHeader from './Team-header'
 import List from '../List/List'
-import { get, post, del } from '../../api'
+import { get, post } from '../../api'
 import NewListModal from '../Modal/NewListModal'
 import { DragDropContext} from 'react-beautiful-dnd'
 
@@ -22,9 +22,6 @@ const Team = ({idTeam}) => {
           name:name.value,
           description: description.value
     }
-      //fake api
-    //addList(newList);
-    //api
     post("/teams/"+idTeam+"/addList",newList)
     .then(res => {
       //setLists([...lists,res.data]);
@@ -37,6 +34,7 @@ const Team = ({idTeam}) => {
     .catch(error => console.log(error))
     setModalOpened(false);
   } 
+
 
   useEffect(() => {
     //api
