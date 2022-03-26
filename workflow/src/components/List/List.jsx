@@ -25,7 +25,6 @@ const List = ({ prefix, data,idTeam, setTeam}) => {
         post("/lists/"+list._id+"/addTask",newTask)
         .then(res => {
           setTasks([...tasks,res.data]);
-          console.log(res)
         })
         .catch(error => console.log(error))
         setModalOpened(false);
@@ -56,7 +55,6 @@ const List = ({ prefix, data,idTeam, setTeam}) => {
                   </button>
                 </div>
 
-                {console.log(list)}
               {
                 tasks.map((task, i) =>
                   <CardList work={task} key={task._id} index={i} idList={list._id}/>
