@@ -6,7 +6,7 @@ import NewListModal from '../Modal/NewListModal'
 import { DragDropContext} from 'react-beautiful-dnd'
 
 // FAke api
-import { getLists, addList } from "../../api/teams";
+//import { getLists, addList } from "../../api/teams";
 import Spinner from '../Spinner/Spinner'
 
 
@@ -27,9 +27,12 @@ const Team = ({idTeam}) => {
     //api
     post("/teams/"+idTeam+"/addList",newList)
     .then(res => {
-      setLists([...lists,res.data]);
-  
-      //console.log(res.data)
+      //setLists([...lists,res.data]);
+      get("/teams/"+idTeam)
+      .then(res => {
+        setTeam(res.data)
+      })
+      .catch(error => console.log(error))
     })
     .catch(error => console.log(error))
     setModalOpened(false);
@@ -42,7 +45,7 @@ const Team = ({idTeam}) => {
     get("/teams/"+idTeam)
     .then(res => {
       setTeam(res.data)
-      //console.log(res.data)
+ 
     })
     .catch(error => console.log(error))
   },[idTeam])
