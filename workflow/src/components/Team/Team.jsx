@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import TeamHeader from './Team-header'
 import List from '../List/List'
-import { get } from '../../api'
+import { get, post } from '../../api'
 import NewListModal from '../Modal/NewListModal'
 import { DragDropContext} from 'react-beautiful-dnd'
 
 // FAke api
 import { getLists, addList } from "../../api/teams";
+import Spinner from '../Spinner/Spinner'
 
 
 const Team = ({idTeam}) => {
@@ -16,24 +17,32 @@ const Team = ({idTeam}) => {
 
   const addList = (event) => {
     event.preventDefault();
-    const {name} = event.target
+    const {name, description} = event.target
     const newList = {
-          name:name.value
-          //id: uuid()
+          name:name.value,
+          description: description.value
     }
       //fake api
-    addList(newList);
-    //setList
+    //addList(newList);
+    //api
+    post("/teams/"+idTeam+"/addList",newList)
+    .then(res => {
+      setLists([...lists,res.data]);
+  
+      //console.log(res.data)
+    })
+    .catch(error => console.log(error))
     setModalOpened(false);
 } 
 
   useEffect(() => {
     //-- fake
-    getLists().then((data) => setLists(data));
+    //getLists().then((data) => setLists(data));
     //api
     get("/teams/"+idTeam)
     .then(res => {
       setTeam(res.data)
+      //console.log(res.data)
     })
     .catch(error => console.log(error))
   },[idTeam])
@@ -48,13 +57,14 @@ const Team = ({idTeam}) => {
 
   const addToList = (list, index, element) => {
 
-    const result = list.tasks
+    const result = list
     result.splice(index, 0, element);
     return result;
   };
 
   const reorder = (list,startIndex,endIndex) =>{
-    const res = list.tasks;
+    console.log(list)
+    const res = list;
     const [removed] = res.splice(startIndex,1);
     res.splice(endIndex,0,removed)
     return res;
@@ -63,7 +73,7 @@ const Team = ({idTeam}) => {
   const onDragEnd = (result) => {
     if (!result.destination) return;
     
-    const listCopy = {...lists}
+    const listCopy = {...team.lists}
 
     const sourceList = listCopy[result.source.droppableId]
 
@@ -88,9 +98,9 @@ const Team = ({idTeam}) => {
 
   return (
   
-      <div className='h-fit rounded-r-md'>
+      <div className='h-fit rounded-r-md text-white'>
         {modalOpened&&<NewListModal setModalOpen={setModalOpened} add={addList}/> }
-          <TeamHeader/>
+          {team&&<TeamHeader idTeam={idTeam}/>}
           
           <DragDropContext onDragEnd={onDragEnd}>
             {/* <MainContent/>*/}
@@ -98,7 +108,7 @@ const Team = ({idTeam}) => {
               <div className='p-6'>
                 <div className='flex justify-between'>
                   <div>
-                      <h2 className='text-color-text-h font-bold text-2xl mb-2'>
+                      <h2 className='font-bold text-2xl mb-2'>
                               {team.name}</h2>
                       <p>Descripción: {team.description}</p>
                   </div>
@@ -109,17 +119,18 @@ const Team = ({idTeam}) => {
                 </div>
 
 
-                  <div className='flex overflow-x-scroll gap-3 mt-10 rounded-md'>
-                    {
-                      lists.map((list,index) =>(
-                        <List title={list.title} works={list.tasks} key={list.id} prefix={index}/>
-                      ))
+                  <div className='flex overflow-x-scroll gap-3 mt-10 pb-3 rounded-md'>
+                    {team&&
+                      team.lists.map((list,index) =>(
+                        <List key={list._id} prefix={index} data={list}/>
+      
+                        ))
                     }
-
+                   
                   </div>
               </div>
               :
-              <p>Loading...</p>
+              <Spinner/>
             }
 
           </DragDropContext>

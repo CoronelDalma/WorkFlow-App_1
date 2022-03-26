@@ -1,16 +1,10 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-
+// Axios
+import {get, post} from "../../api"
 export const teams = createAsyncThunk("team/teams", async(params,thunkAPI) =>{
-    const response = await fetch("http://localhost:3004/teams",{
-        method: "GET",
-        credentials: 'include'
-    })
-
-    const data = await response.json();
-    if(!data.id) {
-        return thunkAPI.rejectWithValue(data)
-    }
-    return data;
+    const response = await get("/teams")
+    console.log(response)
+    return response.data
 })
 
 const teamSlice = createSlice({
@@ -19,7 +13,8 @@ const teamSlice = createSlice({
         name:"",
         loading:false,
         error: true,
-        message:""
+        message:"",
+        teams:[]
     },
     reducers:{
 

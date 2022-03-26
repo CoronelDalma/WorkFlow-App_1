@@ -17,7 +17,7 @@ const post = async (url, data) => {
     })
 }
 
-const del = async (url, data) => {
+const del = async (url, data, headers) => {
     return await instance.delete(url,data, {
         withCredentials: true
     })

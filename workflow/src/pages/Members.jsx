@@ -6,15 +6,20 @@ import {MdEdit, MdDelete} from 'react-icons/md'
 import ChangeRoleModal from '../components/Modal/ChangeRoleModal';
 import DeleteMemberModal from '../components/Modal/DeleteMemberModal';
 import Fondo from '../components/layouts/Fondo';
+import Spinner from '../components/Spinner/Spinner';
 
 const Members = () => {
     const [myTeams, setMyTeams] = useState(); 
     const [editModalOpened,setEditModalOpened] = useState(false)
     const [delModalOpened,setDelModalOpened] = useState(false)
     const [idTeamEdit, setIdTeamedit] = useState("")
+    const [idMemberEdit, setIdMemberedit] = useState()
+    const [nameMember,setNameMember] = useState("")
 
-    const handleEdit = (id) =>{
-      setIdTeamedit(id)
+    const handleEdit = (idT, idM, nameM) =>{
+      setIdTeamedit(idT)
+      setIdMemberedit(idM)
+      setNameMember(nameM)
       setEditModalOpened(true)
     }
 
@@ -72,8 +77,8 @@ const Members = () => {
         <div className='w-full h-fit p-3 rounded-r-md'>
             <h1 className='text-2xl font-bold py-4'>Mis colaboradores</h1>
             <hr></hr>
-            {console.log(myTeams)}
-            {myTeams&&
+           
+            {myTeams?
 
                 myTeams.map((team) => (
                   <div key={team._id} className='flex gap-3 flex-col border-2 border-color-border shadow-md my-4 p-3'>
@@ -83,11 +88,12 @@ const Members = () => {
                     <h3 className='font-bold'>Miembros</h3>
                     {team.members.map((member) => (
                       <div className='flex gap-3 mb-4'>
+                        {console.log(member)}
                         <MemberData key={member._id._id} member={member}/>
                         <div className='flex gap-3 ml-auto'>
-                          <button onClick={()=>{handleEdit(team._id)}}><MdEdit className='text-color-btn w-6 h-6 hover:bg-white rounded-md'/></button>
+                          <button onClick={()=>{handleEdit(team._id, member._id._id, member._id.name)}}><MdEdit className='text-color-btn w-6 h-6 hover:bg-white rounded-md'/></button>
                           {editModalOpened&&
-                              <ChangeRoleModal setModalOpen={setEditModalOpened} change={edit} idTeam={idTeamEdit} idMember={member._id._id} name={member._id.name}/>
+                              <ChangeRoleModal setModalOpen={setEditModalOpened} change={edit} idTeam={idTeamEdit} idMember={idMemberEdit} name={nameMember}/>
                           } 
 
                           <button onClick={()=>{handleDelete(team._id)}}><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
@@ -98,7 +104,7 @@ const Members = () => {
                     ))}
                   </div>
                 ))   
-            }
+            :<Spinner/>}
         </div>
       </Fondo>
       

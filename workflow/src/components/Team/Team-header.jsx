@@ -7,26 +7,15 @@ import InvitationModal from '../Modal/InvitationModal'
 
 import Button from '../Buttons/Button';
 import { useSelector } from 'react-redux';
+import UsersPage from '../../pages/UsersPage';
+import { Link } from 'react-router-dom';
 
-const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}) => {
-  const [modalOpened,setModalOpened] = useState(false)
+const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',idTeam,idName}) => {
+ 
   const user = useSelector((state) => state.user);
 
-  const add = (event) => {
-    event.preventDefault();
-    const {email,role ,description} = event.target
-    const newInvitation = {
-          email:email.value,
-          role:role.value,
-          description:description.value
-      }
-   // addInvitation(newInvitation);
- 
-    setModalOpened(false);
-}
   return (
     <div className='flex flex-col  px-6 py-3 border-b border-gray-200'>
-       {modalOpened&&<InvitationModal setModalOpen={setModalOpened} addInvitation={add}/> }
        <div className='flex justify-between'>
           <div className='flex relative'>
                 <span ><MdSearch className='w-6 h-6 text-gray-600 absolute inset-y-0 left-0 pl-1'/></span>
@@ -54,7 +43,7 @@ const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/bl
           </div>
 
           <div>
-            <Button onClick={()=>{setModalOpened(true)}}>Invitar</Button> 
+            <Link to={`/users/${idTeam}`}>Invitar</Link> 
           </div>
         </div>
     </div>

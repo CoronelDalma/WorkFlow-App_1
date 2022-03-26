@@ -26,7 +26,7 @@ const AddCardOrListcopy = ({type}) => {
 }
 
   return (
-    <div className='relative overflow-hidden w-4/6 mx-auto shadow-lg'>
+    <div className='relative overflow-hidden w-4/6 mx-auto shadow-lg text-black'>
       <input type="checkbox"
               className='absolute top-0 inset-x-0 w-full h-12 
                         opacity-0 z-10 cursor-pointer peer'/>

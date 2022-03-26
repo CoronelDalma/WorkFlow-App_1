@@ -33,19 +33,19 @@ const Sidebar = () => {
     {/*    <div className='w-64 p-5 mt-2 rounded-md fixed top-8 left-8 z-50 bg-orange-500'>*/}
   return (
 
-    <div className={`${open?"w-64 p-5" : "w-20 px-3 py-5"} duration-300 rounded-md bg-orange-500 relative`}>
+    <div className={`${open?"w-64 p-5" : "w-[120px] md:w-20 px-3 py-5 overflow-hidden"} duration-300 rounded-md bg-color-bg-secondary relative`}>
         <button className='absolute cursor-pointer -right-2 top-9 text-white'
                 onClick={() => dispatch(setOpen(open))}>
-                  <BsArrowLeftCircleFill className={`w-8 h-8 ${!open&&"rotate-180"}`}/>
+                  <BsArrowLeftCircleFill className={`w-8 h-8 ${!open&&"rotate-180"} rounded-full`}/>
         </button>
         <Link to='/' className='flex gap-x-4 items-center'>
-          <span><AiFillHome className='w-9 h-9 duration-500'/></span>
+          <span><AiFillHome className='w-9 h-9 duration-500 '/></span>
           <h2 className={`font-bold text-2xl origin-left duration-300 ${!open&& "scale-0"}`}>Home</h2>
         </Link>
         <nav className='mt-8'>
           
           <Link to='/my-teams' className='flex gap-x-4 items-center'>
-            <span><MdDashboardCustomize className='w-5 h-5 duration-500'/></span>
+            <span><MdDashboardCustomize className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Mis equipos de trabajo"} openSidebar={open}/>
           </Link>
           <div className="mt-3 -mx-3">
@@ -57,12 +57,12 @@ const Sidebar = () => {
           }
           </div>
           <Link to='/members' className='flex gap-x-4 items-center mt-4'>
-            <span><RiTeamFill className='w-5 h-5 duration-500'/></span>
+            <span><RiTeamFill className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Colaboradores"} openSidebar={open}/>
           </Link>
 
           <Link to='#' className='flex gap-x-4 items-center mt-4'>
-            <span><FaTasks className='w-5 h-5 duration-500'/></span>
+            <span><FaTasks className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Tareas"} openSidebar={open}/>
           </Link>
           <div className="mt-3 -mx-3">
@@ -75,7 +75,7 @@ const Sidebar = () => {
           </div>
 
           <Link to='#' className='flex gap-x-4 items-center mt-4'>
-            <span><FaTags className='w-5 h-5 duration-500'/></span>
+            <span><FaTags className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Tags"} openSidebar={open}/>
           </Link>
           <div className="mt-3 -mx-3">
@@ -87,8 +87,8 @@ const Sidebar = () => {
           }
           </div>
 
-          <Link to='#' className='flex gap-x-4 items-center mt-4'>
-            <span><MdMarkEmailRead className='w-5 h-5 duration-500'/></span>
+          <Link to='/users' className='flex gap-x-4 items-center mt-4'>
+            <span><MdMarkEmailRead className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Invitaciones"} openSidebar={open}/>
           </Link>
           

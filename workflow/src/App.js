@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/layouts/Header';
-import { Home, Login, TeamPage, NotFound, MyTeams, Register, Members} from './pages';
+import { Home, Login, TeamPage, NotFound, MyTeams, Register, Members, UsersPage} from './pages';
 import { validate } from './features/user/userSlice';
 import PrivateRoute from './Routers/PrivateRoute';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -26,6 +26,7 @@ function App() {
           <Route path="/my-teams" element={<PrivateRoute><MyTeams/></PrivateRoute>}/>
           <Route path="/my-teams/:idTeam" element={<PrivateRoute><TeamPage/></PrivateRoute>}/>
           <Route path="/members" element={<PrivateRoute><Members/></PrivateRoute>}/>
+          <Route path="/users/:idTeam" element={<PrivateRoute><UsersPage/></PrivateRoute>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="*" element={<NotFound/>}/>

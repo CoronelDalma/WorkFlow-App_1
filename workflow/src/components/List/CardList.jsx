@@ -1,11 +1,27 @@
-import React from 'react'
-import {MdEdit, MdDelete} from 'react-icons/md'
+import React, { useState } from 'react'
+import {MdEdit, MdDelete, MdComment} from 'react-icons/md'
 import Tag from '../Tags/Tag'
 import { Draggable } from 'react-beautiful-dnd'
+import AlertDeleteModal from '../Modal/AlertDeleteModal'
+import { del } from '../../api'
 
-const CardList = ({work, index}) => {
+const CardList = ({work, index, idList}) => {
+  const [modalOpened,setModalOpened] = useState(false)
+
+  const deleteTask = (event) => {
+    event.preventDefault();
+    console.log(idList)
+    console.log(work._id)
+    //api
+    del("/lists/"+idList+"/removeTask/"+work._id)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(error => console.log(error))
+    setModalOpened(false);
+} 
   return (
-    <Draggable draggableId={work.id} index={index}>
+    <Draggable draggableId={work._id} index={index}>
       {(provided, snapshot) => {
           return (
             <div className="max-w-sm rounded overflow-hidden shadow-lg mx-auto bg-color-bg-secondary mb-4"
@@ -19,10 +35,11 @@ const CardList = ({work, index}) => {
               
               <div className="px-6 py-4">
                 <div className='flex justify-between'>
-                  <div className="text-color-text-h font-bold text-lg mb-2">{work.title}</div>
+                  <div className="text-color-text-h font-bold text-lg mb-2">{work.name}</div>
                   <div className='flex gap-2'>
+                  <button className=' '><MdComment className='text-color-border w-6 h-6 hover:bg-white rounded-md'/></button>
                       <button className=' '><MdEdit className='text-color-btn w-6 h-6 hover:bg-white rounded-md'/></button>
-                      <button><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
+                      <button><MdDelete onClick={()=>{setModalOpened(true)}} className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
                   </div>
                 </div>
 
@@ -56,8 +73,9 @@ const CardList = ({work, index}) => {
                 <Tag text={'travel'}/>
                 <Tag text={'winter'}/>
               </div>
+              {modalOpened&&<AlertDeleteModal setModalOpen={setModalOpened} action={deleteTask}/> }
             </div>
-          
+            
           )
       }}
 

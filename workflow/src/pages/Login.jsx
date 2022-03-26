@@ -7,6 +7,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {login,logout} from '../features/user/userSlice'
 import { URL } from "../config"
 import Button from '../components/Buttons/Button'
+import Spinner from '../components/Spinner/Spinner'
 
 const Login = () => {
   const user = useSelector((state) => state.user);
@@ -38,7 +39,7 @@ const Login = () => {
                 <Button>Iniciar sesión</Button>
         </form>
         {user.error&&<p>{user.message}</p>}
-        {user.loading&&<p>Loading...</p>}
+        {user.loading&&<Spinner/>}
         <a href={`${URL}/auth/google`} className='bg-indigo-600 py-4 px-3 flex mt-6 justify-center items-center gap-3 rounded-b-md'><span><FcGoogle/></span>Iniciar sesión con Google</a>
       </div> 
     </Fondo>

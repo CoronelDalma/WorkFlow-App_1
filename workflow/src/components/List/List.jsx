@@ -2,32 +2,34 @@ import React, { useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Button from '../Buttons/Button'
 import NewWorkModal from '../Modal/NewWorkModal'
-import AddCardOrList from './AddCardOrList'
 
 import CardList from './CardList'
 import ListTitle from './ListTitle'
+//api
+import { get, post } from '../../api'
+import AddCardOrListcopy from './AddCardOrList'
 
-
-const List = ({title,works, prefix}) => {
-    const [tasks, settasks] = useState(works)
+const List = ({ prefix, data}) => {
+    const [tasks, setTasks] = useState(data.tasks)
     const [modalOpened,setModalOpened] = useState(false)
+    const [list, setList] = useState(data)
 
     const add = (event) => {
       event.preventDefault();
-      const {title,url_img,date,priority,description,completed,validated} = event.target
+      const {name, description} = event.target
       const newTask = {
-        title: title.value,
-        url_img: url_img.value,
-        date: date.value,
-        priority: priority.value,
+        name: name.value,
         description: description.value,
-        completed: completed.value,
-        validated: validated.value
         }
-      //addWork(newWork); api
-      //setTasks([...tasks,newTask]);
-      setModalOpened(false);
-  }
+        post("/lists/"+list._id+"/addTask",newTask)
+        .then(res => {
+          setTasks([...tasks,res.data]);
+          console.log(res)
+        })
+        .catch(error => console.log(error))
+        setModalOpened(false);
+    }
+   
   return (
     <div className='w-96 min-h-full bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md'>
    
@@ -35,10 +37,11 @@ const List = ({title,works, prefix}) => {
           {(provided, snapshot) => {
             return (
               <div {...provided.droppableProps} ref={provided.innerRef}>
-                <ListTitle title={title}/>
+                <ListTitle name={list.name} description={list.description}/>
+                {console.log(list)}
               {
                 tasks.map((task, i) =>
-                  <CardList work={task} key={task.id} index={i}/>
+                  <CardList work={task} key={task._id} index={i} idList={list._id}/>
                 )
               }
               {provided.placeholder}

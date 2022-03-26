@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {FaWindowClose} from 'react-icons/fa'
 import Button from '../Buttons/Button'
 
 const ChangeRoleModal = ({setModalOpen, change, idTeam, idMember, name}) => {
+  const [idT, setIdT] =useState(idTeam)
+  const [idM, setIdM] = useState(idMember)
+
   return (
     <div>
         <div className='absolute left-0 top-0 h-screen w-screen bg-black bg-opacity-30' onClick={()=>{setModalOpen(false)}}></div>
@@ -11,8 +14,8 @@ const ChangeRoleModal = ({setModalOpen, change, idTeam, idMember, name}) => {
                  onClick={()=>{setModalOpen(false)}}><FaWindowClose className='w-8 h-8 text-lavender-800 hover:text-lavender-600'/></Button>
             <h2 className='p-5 text-3xl font-bold'>Nuevo Rol</h2>
             <form className='flex flex-col p-5' onSubmit={change}>
-                <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='idTeam' hidden value={idTeam} type="text"/>
-                <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='idMember' hidden value={idMember} type="text" />
+                <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='idTeam' hidden value={idT} onChange={e => setIdT(e.target.value)} type="text"/>
+                <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='idMember' hidden value={idM} onChange={e => setIdM(e.target.value)} type="text" />
                 <label>{name}</label>
                 <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='newRole' placeholder='Nuevo rol' type="text" required/>
                 <Button>Guardar cambio</Button>

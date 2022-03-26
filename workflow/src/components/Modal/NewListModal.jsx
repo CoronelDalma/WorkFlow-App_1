@@ -12,8 +12,9 @@ const NewListModal = ({setModalOpen, add}) => {
                         px-2 text-white' onClick={()=>{setModalOpen(false)}}><FaWindowClose className='w-8 h-8 text-lavender-800 hover:text-lavender-600'/></button>
         <h2 className='p-5 text-lavender-800 text-3xl font-bold'>Nueva lista</h2>
         <form className='flex flex-col p-5' onSubmit={add}>
-            <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='name' placeholder='Nombre...' type="text" required/>
 
+            <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md text-black' name='name' placeholder='Nombre...' type="text" required/>
+            <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md text-black' name='description' placeholder='Descripción...' type="text"/>
             <Button>Crear</Button>
         </form>
 

@@ -12,29 +12,13 @@ const NewWorkModal = ({setModalOpen, addWork}) => {
                             px-2 text-white' onClick={()=>{setModalOpen(false)}}><FaWindowClose className='w-8 h-8 text-lavender-800 hover:text-lavender-600'/></button>
             <h2 className='p-5 text-lavender-800 text-3xl font-bold'>Agregar Tarea</h2>
             <form className='flex flex-col p-5' onSubmit={addWork}>
-                <FormInput name='title' placeholder='Título...' type="text" required/>
+                <FormInput name='name' placeholder='Nombre...' type="text" required/>
                 <FormInput name='url_img' placeholder='imagen...' type="text" />
-                <FormInput name='date' type="date" required/>
-                <FormInput name='priority' placeholder='Prioridad...' type="text" required/>
+                <FormInput name='date' type="date" />
+                <FormInput name='priority' placeholder='Prioridad...' type="text" />
                 <textarea className='p-4 bg-color-bg-secondary outline-none border focus:border-color-btn my-5 rounded-md' name='description' placeholder='Descripción...' type="text" />
 
-                <div className="flex justify-evenly mb-3">
-                    <div>
-                        <input type='checkbox' name='completed'
-                                className="h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"/>
-                        <label className="inline-block text-gray-800">
-                            Completado
-                        </label>
-                    </div>
-
-                    <div>
-                    <input type='checkbox' name='validated'
-                            className="h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"/>
-                    <label className="inline-block text-gray-800">
-                        Validado
-                    </label>
-                    </div>
-                </div>
+               
                 <button className='bg-gradient-to-r from-purple-700 to-blue-500 
                                 hover:from-purple-600 hover:to-blue-400 rounded-lg 
                                 px-2 text-white font-bold'>Crear tarea</button>
