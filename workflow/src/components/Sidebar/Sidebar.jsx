@@ -58,7 +58,7 @@ const Sidebar = () => {
           </div>
           <Link to='/members' className='flex gap-x-4 items-center mt-4'>
             <span><RiTeamFill className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
-            <TextSidebar text={"Colaboradores"} openSidebar={open}/>
+            <TextSidebar text={"Grupos"} openSidebar={open}/>
           </Link>
 
           <Link to='#' className='flex gap-x-4 items-center mt-4'>
