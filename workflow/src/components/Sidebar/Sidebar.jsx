@@ -89,7 +89,7 @@ const Sidebar = () => {
 
           <Link to='/users' className='flex gap-x-4 items-center mt-4'>
             <span><MdMarkEmailRead className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
-            <TextSidebar text={"Invitaciones"} openSidebar={open}/>
+            <TextSidebar text={"Usuarios registrados"} openSidebar={open}/>
           </Link>
           
         </nav>

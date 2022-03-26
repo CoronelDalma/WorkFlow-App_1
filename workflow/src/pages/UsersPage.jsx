@@ -47,8 +47,10 @@ const UsersPage = () => {
                 users.map((user) => (
                   <div key={user._id} className='flex gap-3 border-2 border-color-border shadow-md my-4 p-3 w-4/5 mx-auto'>
                     <UserData  user={user}/>
-                    <button onClick={()=>{handleAddInvitation(user._id)}}><MdMarkEmailRead className='text-color-tertiary w-6 h-6 ml-auto rounded-md hover:bg-white '/></button>
-                  </div>
+                    {params.idTeam&&
+                      <button onClick={()=>{handleAddInvitation(user._id)}}><MdMarkEmailRead className='text-color-tertiary w-6 h-6 ml-auto rounded-md hover:bg-white '/></button>
+                    }
+                    </div>
                 ))   
             :<Spinner/>}
         </div>

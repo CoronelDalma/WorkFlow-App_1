@@ -26,6 +26,7 @@ function App() {
           <Route path="/my-teams" element={<PrivateRoute><MyTeams/></PrivateRoute>}/>
           <Route path="/my-teams/:idTeam" element={<PrivateRoute><TeamPage/></PrivateRoute>}/>
           <Route path="/members" element={<PrivateRoute><Members/></PrivateRoute>}/>
+          <Route path="/users" element={<PrivateRoute><UsersPage/></PrivateRoute>}/>
           <Route path="/users/:idTeam" element={<PrivateRoute><UsersPage/></PrivateRoute>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>

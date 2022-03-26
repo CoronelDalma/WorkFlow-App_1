@@ -102,7 +102,7 @@ const Team = ({idTeam}) => {
   return (
       <div className='h-screen rounded-r-md text-white w-full bg-color-bg-secondary'>
         {modalOpened&&<NewListModal setModalOpen={setModalOpened} add={addList}/> }
-          {team&&<TeamHeader idTeam={idTeam}/>}
+          {team&&<TeamHeader idTeam={idTeam} idLeader={team.idLeader._id}/>}
           
           <DragDropContext onDragEnd={onDragEnd}>
             {/* <MainContent/>*/}

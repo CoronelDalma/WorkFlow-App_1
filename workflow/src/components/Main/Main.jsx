@@ -52,6 +52,7 @@ const Main = () => {
                                     px-2 text-white font-bold'>Agregar Equipo</button>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 mt-10 rounded-md'>
+            {console.log(myTeams)}
             {myTeams.length>0?
              myTeams.map((team) =>(
                <Link to={'/my-teams/'+team._id} key={team._id}>

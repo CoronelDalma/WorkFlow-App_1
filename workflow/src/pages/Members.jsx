@@ -9,6 +9,7 @@ import Fondo from '../components/layouts/Fondo';
 import Spinner from '../components/Spinner/Spinner';
 import { useSelector } from 'react-redux';
 import Leader from '../components/RolePrivate/Leader';
+import { Link } from 'react-router-dom';
 
 const Members = () => {
     const [myTeams, setMyTeams] = useState(); 
@@ -17,7 +18,6 @@ const Members = () => {
     const [idTeamEdit, setIdTeamedit] = useState("")
     const [idMemberEdit, setIdMemberedit] = useState()
     const [nameMember,setNameMember] = useState("")
-    const user = useSelector((state) => state.user);
    
 
     const handleEdit = (idT, idM, nameM) =>{
@@ -89,11 +89,18 @@ const Members = () => {
                     <h2 className='text-lg font-semibold text-color-tertiary'>{team.name}</h2>
                     <p>Lider {team.idLeader.name}</p>
                     <p>{team.idLeader.email}</p>
-                    <h3 className='font-bold'>Miembros</h3>
+                    <div className='flex gap-7'>
+                      <h3 className='font-bold'>Miembros</h3>
+                      <Leader idLeader={team.idLeader._id}> 
+                            <Link to={`/users/${team._id}`} className=' text-white text-lg font-bold'>+</Link> 
+                      </Leader>
+                    </div>
+
                     {team.members.map((member) => (
                       <div className='flex gap-3 mb-4'>
                         
                         <MemberData key={member._id._id} member={member}/>
+
                         <Leader idLeader={team.idLeader._id}> 
                           <div className='flex gap-3 ml-auto'>
                             <button onClick={()=>{handleEdit(team._id, member._id._id, member._id.name)}}><MdEdit className='text-color-btn w-6 h-6 hover:bg-white rounded-md'/></button>

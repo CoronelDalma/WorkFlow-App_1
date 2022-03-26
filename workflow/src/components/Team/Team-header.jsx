@@ -9,8 +9,9 @@ import Button from '../Buttons/Button';
 import { useSelector } from 'react-redux';
 import UsersPage from '../../pages/UsersPage';
 import { Link } from 'react-router-dom';
+import Leader from '../RolePrivate/Leader';
 
-const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',idTeam,idName}) => {
+const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',idTeam,idLeader}) => {
  
   const user = useSelector((state) => state.user);
 
@@ -42,9 +43,12 @@ const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/bl
             </div>
           </div>
 
-          <div>
-            <Link to={`/users/${idTeam}`}>Invitar</Link> 
-          </div>
+          <Leader idLeader={idLeader}>
+            <div>
+              <Link to={`/users/${idTeam}`} className='border-2 border-color-tertiary text-color-tertiary px-4 py-2 rounded-md'>Invitar</Link> 
+            </div>
+          </Leader>
+
         </div>
     </div>
   )
