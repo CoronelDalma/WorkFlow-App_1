@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { get, post, put } from '../api'
+import { del, get, post, put } from '../api'
 import Button from '../components/Buttons/Button'
+import Comment from '../components/Comments/Comment'
 import DnDFileArea from '../components/Files/DnDFileArea'
 import Fondo from '../components/layouts/Fondo'
 import ProfilePicMembers from '../components/ProfilePicMembers/ProfilePicMembers'
@@ -13,6 +14,7 @@ const TaskPage = () => {
   const params = useParams()
   const [task,setTask] =useState()
   const [comments, setComments] = useState()
+  const [delCommentId, setDelCommentId] = useState()
 
 
   useEffect(() => {
@@ -50,6 +52,14 @@ const TaskPage = () => {
       event.target.file.value =""
     })
   }
+
+  const deleteComment = (id) => {
+    del("/tasks/"+task._id+"/removeComment/"+id)
+    .then(res =>{
+      console.log(res)
+    })
+    .catch(error => console.log(error))
+  }
   return (
     <main className='flex w-full'>
     <Sidebar/>
@@ -73,13 +83,16 @@ const TaskPage = () => {
 
               <SectionTaskInfo title='Comentarios'>
                 {comments&&comments.map((comment) =>(
-                  <p key={comment._id}>{comment.content}</p>
+                  <div key={comment._id} >
+                      <Comment comment={comment}/>
+                      <Button onClick={() => deleteComment(comment._id)}>Eliminar</Button>
+                  </div>
                 ))}
 
                   <form onSubmit={addComment} className='flex flex-col'>
                     <DnDFileArea/>
                     <textarea rows={5} cols={40} className='text-color-text-h' name="comment" placeholder='Comentar...'></textarea>
-                    <Button >Agregar comentario</Button>
+                    <Button>Agregar comentario</Button>
                 </form>
               </SectionTaskInfo>
  
