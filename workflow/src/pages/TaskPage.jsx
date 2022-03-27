@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { get, post, put } from '../api'
 import Button from '../components/Buttons/Button'
+import DnDFileArea from '../components/Files/DnDFileArea'
 import Fondo from '../components/layouts/Fondo'
 import ProfilePicMembers from '../components/ProfilePicMembers/ProfilePicMembers'
 import Sidebar from '../components/Sidebar/Sidebar'
@@ -37,16 +38,16 @@ const TaskPage = () => {
 
   const addComment = (event) =>{
     event.preventDefault()
-    const {comment} = event.target
+    const {comment,file} = event.target
     let formData = new FormData()
     formData.append('content',comment.value)
-    formData.append('file','')
+    formData.append('file',file.files[0])
 
     post("/tasks/"+task._id+"/addComment",formData)
     .then(res => {
-      console.log(res.data)
       setComments([...comments,res.data])
       event.target.comment.value=""
+      event.target.file.value =""
     })
   }
   return (
@@ -74,7 +75,9 @@ const TaskPage = () => {
                 {comments&&comments.map((comment) =>(
                   <p key={comment._id}>{comment.content}</p>
                 ))}
+
                   <form onSubmit={addComment} className='flex flex-col'>
+                    <DnDFileArea/>
                     <textarea rows={5} cols={40} className='text-color-text-h' name="comment" placeholder='Comentar...'></textarea>
                     <Button >Agregar comentario</Button>
                 </form>
