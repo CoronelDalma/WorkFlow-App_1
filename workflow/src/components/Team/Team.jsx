@@ -112,7 +112,6 @@ const Team = ({idTeam}) => {
                   </div>
 
                   <button className='ml-auto border-2 border-color-tertiary rounded-md px-2 text-color-tertiary' onClick={()=>{setModalOpened(true)}}> +Nueva lista</button>
-                  <button className='ml-auto'>Colaboradores</button>
         
                 </div>
 

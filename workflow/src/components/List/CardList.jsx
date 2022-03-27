@@ -4,6 +4,7 @@ import Tag from '../Tags/Tag'
 import { Draggable } from 'react-beautiful-dnd'
 import AlertDeleteModal from '../Modal/AlertDeleteModal'
 import { del } from '../../api'
+import Dropdown from '../Dropdown/Dropdown'
 
 const CardList = ({work, index, idList}) => {
   const [modalOpened,setModalOpened] = useState(false)
@@ -36,11 +37,13 @@ const CardList = ({work, index, idList}) => {
               <div className="px-6 py-4">
                 <div className='flex justify-between'>
                   <div className="text-color-text-h font-bold text-lg mb-2">{work.name}</div>
-                  <div className='flex gap-2'>
-                  <button className=' '><MdComment className='text-color-border w-6 h-6 hover:bg-white rounded-md'/></button>
-                      <button className=' '><MdEdit className='text-color-btn w-6 h-6 hover:bg-white rounded-md'/></button>
-                      <button><MdDelete onClick={()=>{setModalOpened(true)}} className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
-                  </div>
+                  <Dropdown>
+                      <a href="/" className="text-color-text-h block px-4 py-2 text-sm hover:bg-color-bg-secondary" >Editar</a>
+                      <a href="/" className="text-color-text-h block px-4 py-2 text-sm hover:bg-color-bg-secondary" >Comentarios</a>
+                     <hr/>
+                     <button className='text-color-text-h px-4 py-2 text-sm w-full hover:bg-color-tertiary hover:text-white'>Eliminar</button>
+                  </Dropdown>
+
                 </div>
 
                 <p className="text-color-text-h text-sm">

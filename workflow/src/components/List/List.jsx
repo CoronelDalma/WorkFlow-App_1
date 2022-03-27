@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Button from '../Buttons/Button'
 import NewWorkModal from '../Modal/NewWorkModal'
-import  { Navigate } from 'react-router-dom'
 import CardList from './CardList'
 import ListTitle from './ListTitle'
-import {FiDelete, FiEdit} from 'react-icons/fi'
+import {MdEdit, MdDelete} from 'react-icons/md'
 //api
 import { get, post, del, put } from '../../api'
 import EditListModal from '../Modal/EditListModal'
@@ -66,17 +65,19 @@ const List = ({ prefix, data,idTeam, setTeam}) => {
               <div {...provided.droppableProps} ref={provided.innerRef} className='w-[300px] overflow-auto h-full'>
                 <div className='flex justify-between'>
                   <ListTitle name={list.name} description={list.description}/>
-                  <button onClick={()=>{setEditListOpened(true)}}>                    
-                      <FiEdit className='text-color-tertiary font-semibold w-6 h-6'/>
-                  </button>
-                    {editListOpened&&
-                        <EditListModal setModalOpen={setEditListOpened} action={updateList} data={list.description} idList={list._id}/>
+                  <div className='flex gap-3'>
+                      <button onClick={()=>{setEditListOpened(true)}}>                    
+                          <MdEdit className='text-color-btn font-semibold w-6 h-6'/>
+                      </button>
+                        {editListOpened&&
+                            <EditListModal setModalOpen={setEditListOpened} action={updateList} data={list.description} idList={list._id}/>
+                        } 
 
-                    } 
+                      <button onClick={()=> deleteList(list._id)}>
+                        <MdDelete className='text-color-tertiary font-semibold w-6 h-6'/>
+                      </button>
+                  </div>
 
-                  <button onClick={()=> deleteList(list._id)}>
-                    <FiDelete className='text-color-tertiary font-semibold w-6 h-6'/>
-                  </button>
 
                 </div>
 
