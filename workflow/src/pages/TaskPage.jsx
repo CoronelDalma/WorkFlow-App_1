@@ -6,7 +6,7 @@ import Fondo from '../components/layouts/Fondo'
 import ProfilePicMembers from '../components/ProfilePicMembers/ProfilePicMembers'
 import Sidebar from '../components/Sidebar/Sidebar'
 import SectionTaskInfo from '../components/Tasks/SectionTaskInfo'
-import {BiCommentAdd} from 'react-icons/bi'
+
 
 const TaskPage = () => {
   const params = useParams()
@@ -71,8 +71,8 @@ const TaskPage = () => {
               </SectionTaskInfo>
 
               <SectionTaskInfo title='Comentarios'>
-                {comments.map((comment) =>(
-                  <p>{comment.content}</p>
+                {comments&&comments.map((comment) =>(
+                  <p key={comment._id}>{comment.content}</p>
                 ))}
                   <form onSubmit={addComment} className='flex flex-col'>
                     <textarea rows={5} cols={40} className='text-color-text-h' name="comment" placeholder='Comentar...'></textarea>
