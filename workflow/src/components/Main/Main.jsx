@@ -45,7 +45,7 @@ const Main = () => {
         <div className='p-6'>
           <div className='flex justify-evenly'>
             <ProfilePic urlImg={'https://i.pinimg.com/736x/c0/f0/30/c0f0302707c98b3bb6698aa4e2b42aef.jpg'}/>
-            <h2 className='text-color-text-h text-2xl text-center mb-2'>Equipos de trabajo</h2>
+            <h2 className='text-white text-2xl text-center mb-2'>Equipos de trabajo</h2>
             <button onClick={()=>{setModalOpened(true)}} 
                             className='bg-gradient-to-r from-purple-700 to-blue-500 
                                     hover:from-purple-600 hover:to-blue-400 rounded-lg 

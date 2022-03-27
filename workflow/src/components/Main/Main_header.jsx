@@ -19,7 +19,7 @@ const Main_header = () => {
             </div>
            
         </div> 
-       <div>Header Bottom</div>
+      {/* <div>Header Bottom</div>*/}
     </div>
   )
 }

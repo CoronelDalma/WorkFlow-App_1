@@ -43,14 +43,14 @@ const Sidebar = () => {
             <span><MdDashboardCustomize className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Mis equipos de trabajo"} openSidebar={open}/>
           </Link>
-          <div className="mt-3 -mx-3">
+{ /*         <div className="mt-3 -mx-3">
           {
             
             myTeams.map((team) =>(
               <LinksSidebar key={team._id} texto={team.name} url={"/my-teams/"+team._id}/>
             ))
           }
-          </div>
+        </div>*/}
           <Link to='/members' className='flex gap-x-4 items-center mt-4'>
             <span><RiTeamFill className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Grupos"} openSidebar={open}/>
@@ -60,27 +60,20 @@ const Sidebar = () => {
             <span><FaTasks className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Tareas"} openSidebar={open}/>
           </Link>
-          <div className="mt-3 -mx-3">
-          {
-            
-            myTeams.map((tablero) =>(
-              <LinksSidebar key={tablero.id} texto={tablero.name} url="#"/>
-            ))
-          }
-          </div>
+ 
 
           <Link to='#' className='flex gap-x-4 items-center mt-4'>
             <span><FaTags className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
             <TextSidebar text={"Tags"} openSidebar={open}/>
           </Link>
-          <div className="mt-3 -mx-3">
+{ /*         <div className="mt-3 -mx-3">
           {
             
             myTeams.map((tablero) =>(
               <LinksSidebar key={tablero.id} texto={tablero.name} url="#"/>
             ))
           }
-          </div>
+        </div>*/}
 
           <Link to='/users' className='flex gap-x-4 items-center mt-4'>
             <span><MdMarkEmailRead className={`w-5 h-5 ${!open&&"scale-125"} duration-500 text-color-tertiary`}/></span>
