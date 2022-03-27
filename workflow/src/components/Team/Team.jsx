@@ -95,7 +95,7 @@ const Team = ({idTeam}) => {
   
 
   return (
-      <div className='h-screen rounded-r-md text-white w-full bg-color-bg-secondary'>
+      <div className='h-screen rounded-r-md text-white w-full'>
         {modalOpened&&<NewListModal setModalOpen={setModalOpened} add={addList}/> }
           {team&&<TeamHeader idTeam={idTeam} idLeader={team.idLeader._id}/>}
           
