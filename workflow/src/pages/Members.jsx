@@ -7,7 +7,6 @@ import ChangeRoleModal from '../components/Modal/ChangeRoleModal';
 import DeleteMemberModal from '../components/Modal/DeleteMemberModal';
 import Fondo from '../components/layouts/Fondo';
 import Spinner from '../components/Spinner/Spinner';
-import { useSelector } from 'react-redux';
 import Leader from '../components/RolePrivate/Leader';
 import { Link } from 'react-router-dom';
 
@@ -78,10 +77,9 @@ const Members = () => {
     <main className='flex w-full'>
       <Sidebar/>
       <Fondo>
-        <div className='w-full h-fit p-3 rounded-r-md'>
-            <h1 className='text-2xl font-bold py-4'>Mis colaboradores</h1>
+        <div className='w-full h-fit p-3 rounded-r-md text-white'>
+            <h1 className='text-2xl font-bold py-4'>Mis grupos de trabajo</h1>
             <hr></hr>
-            {console.log(myTeams)}
             {myTeams?
                 
                 myTeams.map((team) => (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import Logo from '../SVG-reutilizable/Logo'
+
 import LinksSidebar from './LinksSidebar';
 import {BsArrowLeftCircleFill} from 'react-icons/bs'
 import {AiFillHome} from 'react-icons/ai'
@@ -9,8 +9,7 @@ import {MdDashboardCustomize, MdMarkEmailRead} from 'react-icons/md'
 import {FaTasks,FaTags} from 'react-icons/fa'
 import { setOpen } from '../../features/sidebarSlice';
 
-//fake api
-//import { getTeams} from "../../api/teams";
+
 import { get } from '../../api'
 import TextSidebar from './TextSidebar';
 import { useSelector, useDispatch } from 'react-redux';
@@ -21,22 +20,18 @@ const Sidebar = () => {
 
   const [myTeams, setMyTeams] = useState([]);
 
-
-/*  useEffect(() => {
-    getTeams().then((data) => setMyTeams(data));
-},[])*/
   useEffect(() => {
     get("/teams")
     .then(res => setMyTeams(res.data))
     .catch(error => console.log(error))
   },[])
-    {/*    <div className='w-64 p-5 mt-2 rounded-md fixed top-8 left-8 z-50 bg-orange-500'>*/}
+   
   return (
 
     <div className={`${open?"w-64 p-5" : "w-[120px] md:w-20 px-3 py-5 overflow-hidden"} duration-300 rounded-l-md bg-color-bg-secondary relative`}>
         <button className='absolute cursor-pointer -right-2 top-9 text-white'
                 onClick={() => dispatch(setOpen(open))}>
-                  <BsArrowLeftCircleFill className={`w-8 h-8 ${!open&&"rotate-180"} rounded-full`}/>
+                  <BsArrowLeftCircleFill className={`w-8 h-8 ${!open&&"rotate-180 "} rounded-full `}/>
         </button>
         <Link to='/' className='flex gap-x-4 items-center'>
           <span><AiFillHome className='w-9 h-9 duration-500 '/></span>

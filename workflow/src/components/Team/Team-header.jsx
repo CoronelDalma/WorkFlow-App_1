@@ -1,13 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MdSearch } from 'react-icons/md';
 import ProfilePicMini from '../ProfilePic/ProfilePic';
-
-//modal 
-import InvitationModal from '../Modal/InvitationModal'
-
-import Button from '../Buttons/Button';
 import { useSelector } from 'react-redux';
-import UsersPage from '../../pages/UsersPage';
 import { Link } from 'react-router-dom';
 import Leader from '../RolePrivate/Leader';
 

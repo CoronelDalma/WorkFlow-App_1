@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import {MdEdit, MdDelete, MdComment} from 'react-icons/md'
 import Tag from '../Tags/Tag'
 import { Draggable } from 'react-beautiful-dnd'
 import AlertDeleteModal from '../Modal/AlertDeleteModal'
 import { del } from '../../api'
 import Dropdown from '../Dropdown/Dropdown'
+import { Link } from 'react-router-dom'
 
 const CardList = ({work, index, idList}) => {
   const [modalOpened,setModalOpened] = useState(false)
@@ -38,8 +38,8 @@ const CardList = ({work, index, idList}) => {
                 <div className='flex justify-between'>
                   <div className="text-color-text-h font-bold text-lg mb-2">{work.name}</div>
                   <Dropdown>
-                      <a href="/" className="text-color-text-h block px-4 py-2 text-sm hover:bg-color-bg-secondary" >Editar</a>
-                      <a href="/" className="text-color-text-h block px-4 py-2 text-sm hover:bg-color-bg-secondary" >Comentarios</a>
+                      <Link to={`/task/${work._id}`} className="text-color-text-h block px-4 py-2 text-sm hover:bg-color-bg-secondary" >Editar</Link>
+                      <Link to={`/task/${work._id}`} className="text-color-text-h block px-4 py-2 text-sm hover:bg-color-bg-secondary" >Comentarios</Link>
                      <hr/>
                      <button className='text-color-text-h px-4 py-2 text-sm w-full hover:bg-color-tertiary hover:text-white'>Eliminar</button>
                   </Dropdown>

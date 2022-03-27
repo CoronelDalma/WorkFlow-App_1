@@ -5,4 +5,5 @@ export {default as MyTeams } from './MyTeams';
 export {default as TeamPage } from './TeamPage';
 export {default as Members } from './Members';
 export {default as UsersPage } from './UsersPage';
+export {default as TaskPage } from './TaskPage';
 export {default as NotFound } from './NotFound';

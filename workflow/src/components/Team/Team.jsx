@@ -13,7 +13,6 @@ import Spinner from '../Spinner/Spinner'
 const Team = ({idTeam}) => {
   const [team, setTeam] = useState();
   const [modalOpened,setModalOpened] = useState(false)
-  const [lists, setLists] = useState();
 
   const addList = (event) => {
     event.preventDefault();
