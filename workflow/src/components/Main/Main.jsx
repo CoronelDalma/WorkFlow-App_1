@@ -20,12 +20,12 @@ const Main = () => {
   const add = (event) => {
       event.preventDefault();
       const {name,img,description} = event.target
-      const newTeam = {
-        name:name.value,
-        img:img.value,
-        description:description.value
-      }
-      post("/teams",newTeam)
+      let formData = new FormData()
+      formData.append('name',name.value)
+      formData.append('description',description.value)
+      formData.append('img',img.value)
+
+      post("/teams",formData)
       .then(res => {
         setMyTeams([...myTeams,res.data]);
       })
