@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../components/Sidebar/Sidebar'
 import { get, post, del } from '../api'
-import MemberData from '../components/Members/MemberData';
+import MemberData from '../components/Members-Users/MemberData';
 import {MdEdit, MdDelete} from 'react-icons/md'
 import ChangeRoleModal from '../components/Modal/ChangeRoleModal';
 import DeleteMemberModal from '../components/Modal/DeleteMemberModal';

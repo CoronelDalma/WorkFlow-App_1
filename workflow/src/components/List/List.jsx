@@ -18,10 +18,11 @@ const List = ({ prefix, data,idTeam, setTeam}) => {
 
     const add = (event) => {
       event.preventDefault();
-      const {name, description} = event.target
+      const {name, description,assigned} = event.target
       const newTask = {
         name: name.value,
         description: description.value,
+        assigned: assigned.value
         }
         post("/lists/"+list._id+"/addTask",newTask)
         .then(res => {

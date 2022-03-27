@@ -5,7 +5,7 @@ import { MdMarkEmailRead } from 'react-icons/md'
 
 import Fondo from '../components/layouts/Fondo';
 import Spinner from '../components/Spinner/Spinner';
-import UserData from '../components/Members/UserData';
+import UserData from '../components/Members-Users/UserData';
 import { useParams } from 'react-router-dom';
 
 const UsersPage = () => {
