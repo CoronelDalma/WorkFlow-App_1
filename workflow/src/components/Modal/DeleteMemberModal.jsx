@@ -11,13 +11,13 @@ const DeleteMemberModal = ({setModalOpen,action, idTeam, idMember}) => {
                 onClick={()=>{setModalOpen(false)}}><FaWindowClose className='w-8 h-8 text-lavender-800 hover:text-lavender-600'/></Button>
             <h2 className='p-5 text-3xl font-bold'>¿Seguro de eliminar al colaborador?</h2>
             <form className='flex flex-col p-5' onSubmit={action}>
-                <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='idTeam' hidden value={idTeam} type="text"/>
-                <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='idMember' hidden value={idMember} type="text" />
+                <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='idTeam' hidden defaultValue={idTeam} type="text"/>
+                <input className='p-4 outline-none border focus:border-color-tertiary my-5 rounded-md' name='idMember' hidden defaultValue={idMember} type="text" />
  
                 <Button>Sí</Button>
             </form>
 
-        </div>
+        </div>                                                                                                                                                                            
     </div>
   )
 }

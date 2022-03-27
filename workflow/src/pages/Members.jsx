@@ -27,8 +27,9 @@ const Members = () => {
       setEditModalOpened(true)
     }
 
-     const handleDelete = (id) => {
+     const handleDelete = (id,idM) => {
        setIdTeamedit(id)
+       setIdMemberedit(idM)
        setDelModalOpened(true)
      }
     const edit = (event) => {
@@ -57,8 +58,11 @@ const Members = () => {
           idTeam: idTeam.value,
           idMember: idMember.value,
       }
-      del("/teams/removeMember",delData)
+      console.log(idTeam)
+      console.log(idMember)
+      del("/teams/removeMember",{data:delData})
       .then(res => {
+        console.log(res)
         get("/teams")
         .then(res => setMyTeams(res.data))
         .catch(error => console.log(error))
@@ -98,7 +102,7 @@ const Members = () => {
 
                     {team.members.map((member) => (
                       <div className='flex gap-3 mb-4'>
-                        
+                       
                         <MemberData key={member._id._id} member={member}/>
                         <div className='flex gap-3 ml-auto'>
                             <Editor role ={member.role} id={member._id._id}>
@@ -112,9 +116,9 @@ const Members = () => {
                                     <ChangeRoleModal setModalOpen={setEditModalOpened} change={edit} idTeam={idTeamEdit} idMember={idMemberEdit} name={nameMember}/>
                                 } 
 
-                                <button onClick={()=>{handleDelete(team._id)}}><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
+                                <button onClick={()=>{handleDelete(team._id,member._id._id)}}><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
                                 {delModalOpened&&
-                                <DeleteMemberModal setModalOpen={setDelModalOpened} action={deleteMember} idTeam={idTeamEdit} idMember={member._id._id}/>}
+                                <DeleteMemberModal setModalOpen={setDelModalOpened} action={deleteMember} idTeam={idTeamEdit} idMember={idMemberEdit}/>}
                               
                             </Leader>
                         </div>
