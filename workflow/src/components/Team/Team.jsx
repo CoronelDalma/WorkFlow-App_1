@@ -97,7 +97,7 @@ const Team = ({idTeam}) => {
   return (
       <div className='h-screen rounded-r-md text-white w-full'>
         {modalOpened&&<NewListModal setModalOpen={setModalOpened} add={addList}/> }
-          {team&&<TeamHeader idTeam={idTeam} idLeader={team.idLeader._id}/>}
+          {team&&<TeamHeader idTeam={idTeam} idLeader={team.idLeader._id} members={team.members}/>}
           
           <DragDropContext onDragEnd={onDragEnd}>
             {/* <MainContent/>*/}
@@ -118,7 +118,7 @@ const Team = ({idTeam}) => {
                 <div className='h-[500px] w-[100vmin] overflow-x-scroll flex gap-3 mt-10 pb-3 rounded-md mx-auto '>
                   {team&&
                     team.lists.map((list,index) =>(
-                      <List key={list._id} prefix={index} data={list} idTeam={idTeam} setTeam={setTeam}/>
+                      <List key={list._id} prefix={index} data={list} idTeam={idTeam} setTeam={setTeam} idLeader={team.idLeader._id}/>
       
                     ))
                   }

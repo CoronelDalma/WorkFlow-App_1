@@ -7,7 +7,7 @@ const ProfilePicMembers = ({members}) => {
     <div className='flex items-center'>
         {
             members.map((member) =>(
-                <ProfilePicMini key={member._id} urlImg={member.url_pic} title={member.name}/>
+                <ProfilePicMini key={member._id} urlImg={member.url_pic} title={member.name? member.name :member._id.name}/>
             ))
         }      
 

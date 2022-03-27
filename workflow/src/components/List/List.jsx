@@ -8,9 +8,10 @@ import {MdEdit, MdDelete} from 'react-icons/md'
 //api
 import { get, post, del, put } from '../../api'
 import EditListModal from '../Modal/EditListModal'
+import Leader from '../RolePrivate/Leader'
 
 
-const List = ({ prefix, data,idTeam, setTeam}) => {
+const List = ({ prefix, data,idTeam, setTeam, idLeader}) => {
     const [tasks, setTasks] = useState(data.tasks)
     const [modalOpened,setModalOpened] = useState(false)
     const [editListOpened,setEditListOpened] = useState(false)
@@ -73,10 +74,12 @@ const List = ({ prefix, data,idTeam, setTeam}) => {
                         {editListOpened&&
                             <EditListModal setModalOpen={setEditListOpened} action={updateList} data={list.description} idList={list._id}/>
                         } 
-
-                      <button onClick={()=> deleteList(list._id)}>
-                        <MdDelete className='text-color-tertiary font-semibold w-6 h-6'/>
-                      </button>
+                      <Leader idLeader={idLeader}>
+                        <button onClick={()=> deleteList(list._id)}>
+                          <MdDelete className='text-color-tertiary font-semibold w-6 h-6'/>
+                        </button>
+                      </Leader>
+ 
                   </div>
 
 

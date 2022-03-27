@@ -17,6 +17,7 @@ const MemberData = ({member, idTeam}) => {
             <label htmlFor="email">Email: </label>
             <input disabled value={member._id.email} className='pl-2'/>
         </div>
+        {console.log(member)}
   </div>
   )
 }

@@ -4,8 +4,9 @@ import ProfilePicMini from '../ProfilePic/ProfilePic';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Leader from '../RolePrivate/Leader';
+import ProfilePicMembers from '../ProfilePicMembers/ProfilePicMembers';
 
-const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',idTeam,idLeader}) => {
+const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',idTeam,idLeader,members}) => {
  
   const user = useSelector((state) => state.user);
 
@@ -30,11 +31,7 @@ const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/bl
         <div className='flex items-center justify-between py-2'>
           <div className='flex gap-3'>
             <h2 className='text-lg font-medium text-gray-900'>Equipo</h2>
-            <div className='flex items-center'> {/* componente colaboradores*/}       
-                <ProfilePicMini/>
-                <ProfilePicMini/>
-                <ProfilePicMini/>
-            </div>
+            <ProfilePicMembers members={members}/>
           </div>
 
           <Leader idLeader={idLeader}>

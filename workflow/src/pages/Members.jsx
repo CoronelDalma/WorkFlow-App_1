@@ -9,6 +9,7 @@ import Fondo from '../components/layouts/Fondo';
 import Spinner from '../components/Spinner/Spinner';
 import Leader from '../components/RolePrivate/Leader';
 import { Link } from 'react-router-dom';
+import Editor from '../components/RolePrivate/Editor';
 
 const Members = () => {
     const [myTeams, setMyTeams] = useState(); 
@@ -92,25 +93,31 @@ const Members = () => {
                       <Leader idLeader={team.idLeader._id}> 
                             <Link to={`/users/${team._id}`} className=' text-white text-lg font-bold'>+</Link> 
                       </Leader>
+
                     </div>
 
                     {team.members.map((member) => (
                       <div className='flex gap-3 mb-4'>
                         
                         <MemberData key={member._id._id} member={member}/>
+                        <div className='flex gap-3 ml-auto'>
+                            <Editor role ={member.role} id={member._id._id}>
+                              <Link to={`/users/${team._id}`} className=' text-white text-lg font-bold'>+ Colaborador</Link> 
+                            </Editor>
 
-                        <Leader idLeader={team.idLeader._id}> 
-                          <div className='flex gap-3 ml-auto'>
-                            <button onClick={()=>{handleEdit(team._id, member._id._id, member._id.name)}}><MdEdit className='text-color-btn w-6 h-6 hover:bg-white rounded-md'/></button>
-                            {editModalOpened&&
-                                <ChangeRoleModal setModalOpen={setEditModalOpened} change={edit} idTeam={idTeamEdit} idMember={idMemberEdit} name={nameMember}/>
-                            } 
+                            <Leader idLeader={team.idLeader._id}> 
+                              
+                                <button onClick={()=>{handleEdit(team._id, member._id._id, member._id.name)}}><MdEdit className='text-color-btn w-6 h-6 hover:bg-white rounded-md'/></button>
+                                {editModalOpened&&
+                                    <ChangeRoleModal setModalOpen={setEditModalOpened} change={edit} idTeam={idTeamEdit} idMember={idMemberEdit} name={nameMember}/>
+                                } 
 
-                            <button onClick={()=>{handleDelete(team._id)}}><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
-                            {delModalOpened&&
-                            <DeleteMemberModal setModalOpen={setDelModalOpened} action={deleteMember} idTeam={idTeamEdit} idMember={member._id._id}/>}
-                          </div>
-                        </Leader>
+                                <button onClick={()=>{handleDelete(team._id)}}><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
+                                {delModalOpened&&
+                                <DeleteMemberModal setModalOpen={setDelModalOpened} action={deleteMember} idTeam={idTeamEdit} idMember={member._id._id}/>}
+                              
+                            </Leader>
+                        </div>
                       </div>
 
                     ))}
