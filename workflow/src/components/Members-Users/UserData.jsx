@@ -17,7 +17,7 @@ const UserData = ({user}) => {
             <label htmlFor="email">Email: </label>
             <input disabled value={user.email} className='pl-2'/>
         </div>
-        {/*<label>{user._id}</label>*/}
+        <label>{user._id}</label>
   </div>
   )
 }

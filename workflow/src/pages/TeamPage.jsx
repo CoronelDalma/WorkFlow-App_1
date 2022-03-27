@@ -9,7 +9,7 @@ const TeamPage = () => {
   const params = useParams()
   
   return (
-    <main className='flex w-full'>
+    <main className='flex w-full '>
       <Sidebar/>
      
       <Team idTeam={params.idTeam}/>

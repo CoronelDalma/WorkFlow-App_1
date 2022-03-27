@@ -40,7 +40,7 @@ const Main = () => {
   },[])
 
   return (
-    <div className='w-full h-fit rounded-r-md'>
+    <div className='w-full rounded-r-md'>
         <MainHeader/>
         <div className='p-6'>
           <div className='flex justify-evenly'>

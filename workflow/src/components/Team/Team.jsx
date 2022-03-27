@@ -102,7 +102,7 @@ const Team = ({idTeam}) => {
           <DragDropContext onDragEnd={onDragEnd}>
             {/* <MainContent/>*/}
             {team? 
-              <div className='p-6 max-w-full'>
+              <div className='p-6'>
                 <div className='flex justify-between '>
                   <div>
                       <h2 className='font-bold text-2xl mb-2'>
@@ -115,7 +115,7 @@ const Team = ({idTeam}) => {
                 </div>
 
 
-                <div className='h-[500px] w-[75vw] overflow-x-scroll flex gap-3 mt-10 pb-3 rounded-md mx-auto '>
+                <div className='h-[500px] w-[100vmin] overflow-x-scroll flex gap-3 mt-10 pb-3 rounded-md mx-auto '>
                   {team&&
                     team.lists.map((list,index) =>(
                       <List key={list._id} prefix={index} data={list} idTeam={idTeam} setTeam={setTeam}/>
