@@ -9,8 +9,7 @@ import { Link } from 'react-router-dom'
 const CardList = ({work, index, idList}) => {
   const [modalOpened,setModalOpened] = useState(false)
 
-  const deleteTask = (event) => {
-    event.preventDefault();
+  const deleteTask = () => {
     console.log(idList)
     console.log(work._id)
     //api
@@ -41,7 +40,7 @@ const CardList = ({work, index, idList}) => {
                       <Link to={`/task/${work._id}`} className="text-color-text-h block px-4 py-2 text-sm hover:bg-color-bg-secondary" >Editar</Link>
                       <Link to={`/task/${work._id}`} className="text-color-text-h block px-4 py-2 text-sm hover:bg-color-bg-secondary" >Comentarios</Link>
                      <hr/>
-                     <button className='text-color-text-h px-4 py-2 text-sm w-full hover:bg-color-tertiary hover:text-white'>Eliminar</button>
+                     <button onClick={()=>{setModalOpened(true)}} className='text-color-text-h px-4 py-2 text-sm w-full hover:bg-color-tertiary hover:text-white'>Eliminar</button>
                   </Dropdown>
 
                 </div>
