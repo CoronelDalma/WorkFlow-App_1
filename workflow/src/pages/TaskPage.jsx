@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,  useNavigate } from 'react-router-dom'
+import { TiArrowBack } from 'react-icons/ti'
 import { del, get, post, put } from '../api'
 import Button from '../components/Buttons/Button'
 import Comment from '../components/Comments/Comment'
@@ -9,13 +10,12 @@ import ProfilePicMembers from '../components/ProfilePicMembers/ProfilePicMembers
 import Sidebar from '../components/Sidebar/Sidebar'
 import SectionTaskInfo from '../components/Tasks/SectionTaskInfo'
 
-
 const TaskPage = () => {
   const params = useParams()
   const [task,setTask] =useState()
   const [comments, setComments] = useState()
   const [delCommentId, setDelCommentId] = useState()
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     get("/tasks/"+params.idTask)
@@ -67,6 +67,7 @@ const TaskPage = () => {
       <div className='w-full h-fit p-3 rounded-r-md text-white px-6'>
         {task&&
           <div className='flex flex-col gap-3'>
+               <Button onClick={() => navigate(-1)}><TiArrowBack/>Volver atras</Button>
               <h1 className='text-2xl font-bold py-4'>Tarea : </h1>
               <h3>{task.name}</h3>
 
