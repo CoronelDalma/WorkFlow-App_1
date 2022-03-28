@@ -40,7 +40,7 @@ const Team = ({idTeam}) => {
     get("/teams/"+idTeam)
     .then(res => {
       setTeam(res.data)
-      console.log(res.data)
+      
     })
     .catch(error => console.log(error))
   },[idTeam])
@@ -48,14 +48,18 @@ const Team = ({idTeam}) => {
   // ---- DRAGGABLE ----
   const removeFromList = (list, index) => {
     const result = list.tasks
-
+    console.log("sacar de la lista")
+    console.log(result)
     const [removed] = result.splice(index, 1);
+    console.log(removed)
+    console.log("la lista de tareas quedo asi:")
+    console.log(result)
     return [removed, result];
   };
 
   const addToList = (list, index, element) => {
 
-    const result = list
+    const result = list.tasks
     result.splice(index, 0, element);
     return result;
   };
@@ -70,9 +74,9 @@ const Team = ({idTeam}) => {
 
   const onDragEnd = (result) => {
     if (!result.destination) return;
-    
+    console.log(result)
     const listCopy = {...team.lists}
-
+    console.log(listCopy)
     const sourceList = listCopy[result.source.droppableId]
 
     if(result.source.droppableId !== result.destination.droppableId){
@@ -89,7 +93,7 @@ const Team = ({idTeam}) => {
     }
 
     //console.log(listCopy)
-    //setLists({...listCopy})
+    // setTeam([...team,])
   };
 
   
@@ -98,7 +102,7 @@ const Team = ({idTeam}) => {
       <div className='h-screen rounded-r-md text-white w-full'>
         {modalOpened&&<NewListModal setModalOpen={setModalOpened} add={addList}/> }
           {team&&<TeamHeader idTeam={idTeam} idLeader={team.idLeader._id} members={team.members}/>}
-          
+          {console.log(team)}
           <DragDropContext onDragEnd={onDragEnd}>
             {/* <MainContent/>*/}
             {team? 

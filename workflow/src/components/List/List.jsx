@@ -28,7 +28,7 @@ const List = ({ prefix, data,idTeam, setTeam, idLeader}) => {
         post("/lists/"+list._id+"/addTask",newTask)
         .then(res => {
           setTasks([...tasks,res.data]);
-        })
+        }) 
         .catch(error => console.log(error))
         setModalOpened(false);
     }
