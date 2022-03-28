@@ -89,7 +89,7 @@ const Members = () => {
                 
                 myTeams.map((team) => (
                   <div key={team._id} className='flex gap-3 flex-col border-2 border-color-border shadow-md my-4 p-3'>
-                    <h2 className='text-lg font-semibold text-color-tertiary'>{team.name}</h2>
+                    <Link to={"/my-teams/"+team._id}><h2 className='text-lg font-semibold text-color-tertiary'>{team.name}</h2></Link>
                     <p>Lider {team.idLeader.name}</p>
                     <p>{team.idLeader.email}</p>
                     <div className='flex gap-7'>
