@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useParams,  useNavigate } from 'react-router-dom'
 import { TiArrowBack } from 'react-icons/ti'
-import { del, get, post, put } from '../api'
+import { del_, get, post, put } from '../api'
 import Button from '../components/Buttons/Button'
 import Comment from '../components/Comments/Comment'
 import DnDFileArea from '../components/Files/DnDFileArea'
@@ -14,7 +14,7 @@ const TaskPage = () => {
   const params = useParams()
   const [task,setTask] =useState()
   const [comments, setComments] = useState()
-  const [delCommentId, setDelCommentId] = useState()
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,9 +54,9 @@ const TaskPage = () => {
   }
 
   const deleteComment = (id) => {
-    del("/tasks/"+task._id+"/removeComment/"+id)
+    del_("/tasks/"+task._id+"/removeComment/"+id)
     .then(res =>{
-      console.log(res)
+      setComments(...comments.filter(comment => comment._id !== id))
     })
     .catch(error => console.log(error))
   }
@@ -77,7 +77,7 @@ const TaskPage = () => {
 
               <SectionTaskInfo title={'Descripción'}>
                 <form onSubmit={handleUpdate} className='flex flex-col'>
-                  <textarea rows={10} cols={40} className='text-color-text-h' name="description">{task.description}</textarea>
+                  <textarea rows={10} cols={40} className='text-color-text-h' name="description" defaultValue={task.description}></textarea>
                   <Button >Actualizar</Button>
                 </form>
               </SectionTaskInfo>

@@ -23,10 +23,16 @@ const del = async (url, data) => {
     })
 }
 
+const del_ = async (url) => {
+    return await instance.delete(url, {
+        withCredentials: true
+    })
+}
+
 const put = async (url,data) =>{
     return await instance.put(url,data, {
         withCredentials: true
     })
 }
 export default instance
-export {get, post, del, put}
+export {get, post, del, put, del_}

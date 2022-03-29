@@ -19,7 +19,7 @@ const Comment = ({comment}) => {
         </div>
   
         <p>{comment.content}</p>
-        {comment.file&&
+        {comment.file!=='undefined'&&
             <button onClick={downloadFile}><FaFileDownload/></button>
         }
         {
