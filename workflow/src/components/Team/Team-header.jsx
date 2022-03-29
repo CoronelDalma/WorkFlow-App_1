@@ -29,10 +29,10 @@ const Main_header = ({url_pic='https://cdn.pixabay.com/photo/2015/10/05/22/37/bl
         </div> 
 
         <div className='flex items-center justify-between py-2'>
- { /*        <div className='flex gap-3'>
+         <div className='flex gap-3'>
             <h2 className='text-lg font-medium text-gray-900'>Equipo</h2>
-            <ProfilePicMembers members={members}/>
-  </div>*/}
+            <ProfilePicMembers members={members} type="members"/>
+         </div>
 
           <Leader idLeader={idLeader}>
             <div>

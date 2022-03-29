@@ -49,6 +49,7 @@ const TaskPage = () => {
 
     post("/tasks/"+task._id+"/addComment",formData)
     .then(res => {
+      console.log(res)
       setComments([...comments,res.data])
       event.target.comment.value=""
       event.target.file.value =""
@@ -85,7 +86,7 @@ const TaskPage = () => {
               </SectionTaskInfo>
 
               <SectionTaskInfo title='Comentarios'>
-                {comments.length>0&&comments.map((comment) =>(
+                {comments&&comments.map((comment) =>(
                   <div key={comment._id} >
                       <Comment comment={comment}/>
                       <Button onClick={() => deleteComment(comment._id)}>Eliminar</Button>

@@ -61,10 +61,9 @@ const List = ({ prefix, data,idTeam, setTeam, idLeader}) => {
     }
 
     const deleteTask = (idTask) => {
-          //api
+      //api
       del_("/lists/"+list._id+"/removeTask/"+idTask)
     .then(res => {
-      console.log(res)
       setTasks(...tasks.filter(task => task._id !== idTask))
  
     })
