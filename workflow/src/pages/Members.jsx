@@ -25,6 +25,7 @@ const Members = () => {
       setIdMemberedit(idM)
       setNameMember(nameM)
       setEditModalOpened(true)
+  
     }
 
      const handleDelete = (id,idM) => {
@@ -82,7 +83,7 @@ const Members = () => {
     <main className='flex w-full'>
       <Sidebar/>
       <Fondo>
-        <div className='w-full h-fit p-3 rounded-r-md text-white'>
+        <div className='w-full h-screen overflow-y-auto p-3 rounded-r-md text-white'>
             <h1 className='text-2xl font-bold py-4'>Mis grupos de trabajo</h1>
             <hr></hr>
             {myTeams?
@@ -113,12 +114,13 @@ const Members = () => {
                               
                                 <button onClick={()=>{handleEdit(team._id, member._id._id, member._id.name)}}><MdEdit className='text-color-btn w-6 h-6 hover:bg-white rounded-md'/></button>
                                 {editModalOpened&&
-                                    <ChangeRoleModal setModalOpen={setEditModalOpened} change={edit} idTeam={idTeamEdit} idMember={idMemberEdit} name={nameMember}/>
+                                   <ChangeRoleModal setModalOpen={setEditModalOpened} change={edit} idTeam={idTeamEdit} idMember={idMemberEdit} name={nameMember}/>
+                                   
                                 } 
 
                                 <button onClick={()=>{handleDelete(team._id,member._id._id)}}><MdDelete className='text-color-tertiary w-6 h-6 rounded-md hover:bg-white '/></button>
                                 {delModalOpened&&
-                                <DeleteMemberModal setModalOpen={setDelModalOpened} action={deleteMember} idTeam={idTeamEdit} idMember={idMemberEdit}/>}
+                                  <DeleteMemberModal setModalOpen={setDelModalOpened} action={deleteMember} idTeam={idTeamEdit} idMember={idMemberEdit}/>}
                               
                             </Leader>
                         </div>

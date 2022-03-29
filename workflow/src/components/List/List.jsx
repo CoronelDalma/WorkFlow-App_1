@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import Button from '../Buttons/Button'
 import NewWorkModal from '../Modal/NewWorkModal'
@@ -6,7 +6,7 @@ import CardList from './CardList'
 import ListTitle from './ListTitle'
 import {MdEdit, MdDelete} from 'react-icons/md'
 //api
-import { get, post, del, put } from '../../api'
+import { get, post, del, put, del_ } from '../../api'
 import EditListModal from '../Modal/EditListModal'
 import Leader from '../RolePrivate/Leader'
 
@@ -16,6 +16,7 @@ const List = ({ prefix, data,idTeam, setTeam, idLeader}) => {
     const [modalOpened,setModalOpened] = useState(false)
     const [editListOpened,setEditListOpened] = useState(false)
     const [list, setList] = useState(data)
+
 
     const add = (event) => {
       event.preventDefault();
@@ -58,6 +59,17 @@ const List = ({ prefix, data,idTeam, setTeam, idLeader}) => {
       setEditListOpened(false);
   
     }
+
+    const deleteTask = (idTask) => {
+          //api
+      del_("/lists/"+list._id+"/removeTask/"+idTask)
+    .then(res => {
+      console.log(res)
+      setTasks(...tasks.filter(task => task._id !== idTask))
+ 
+    })
+    .catch(error => console.log(error))
+    }
   return (
     <div className=' bg-color-bg flex flex-col gap-4 px-3 py-4 border-2 border-color-border rounded-md '>
    
@@ -85,9 +97,9 @@ const List = ({ prefix, data,idTeam, setTeam, idLeader}) => {
 
                 </div>
 
-              {
+              {tasks&&
                 tasks.map((task, i) =>
-                  <CardList work={task} key={task._id} index={i} idList={list._id}/>
+                  <CardList work={task} key={task._id} index={i} idList={list._id} deleteT={deleteTask}/>
                 )
               }
               {provided.placeholder}

@@ -2,22 +2,25 @@ import React, { useState } from 'react'
 import Tag from '../Tags/Tag'
 import { Draggable } from 'react-beautiful-dnd'
 import AlertDeleteModal from '../Modal/AlertDeleteModal'
-import { del } from '../../api'
+import { del_ } from '../../api'
 import Dropdown from '../Dropdown/Dropdown'
 import { Link } from 'react-router-dom'
 
-const CardList = ({work, index, idList}) => {
+const CardList = ({work, index, idList, deleteT}) => {
   const [modalOpened,setModalOpened] = useState(false)
 
   const deleteTask = () => {
     console.log(idList)
     console.log(work._id)
+    deleteT(work._id)
     //api
-    del("/lists/"+idList+"/removeTask/"+work._id)
+ { /*  del_("/lists/"+idList+"/removeTask/"+work._id)
     .then(res => {
       console.log(res)
+  
+ 
     })
-    .catch(error => console.log(error))
+  .catch(error => console.log(error))*/}
     setModalOpened(false);
 } 
   return (

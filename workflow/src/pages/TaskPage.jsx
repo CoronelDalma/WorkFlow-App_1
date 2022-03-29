@@ -22,6 +22,8 @@ const TaskPage = () => {
     .then(res =>{ 
       setTask(res.data)
       setComments(res.data.comments)
+      console.log("use effect")
+      console.log(res.data.comments)
     })
     .catch(error => console.log(error))
   },[params.idTask])
@@ -83,7 +85,7 @@ const TaskPage = () => {
               </SectionTaskInfo>
 
               <SectionTaskInfo title='Comentarios'>
-                {comments&&comments.map((comment) =>(
+                {comments.length>0&&comments.map((comment) =>(
                   <div key={comment._id} >
                       <Comment comment={comment}/>
                       <Button onClick={() => deleteComment(comment._id)}>Eliminar</Button>
